@@ -5,6 +5,18 @@
  */
 package fatec.br.projetormi.servidor.GUI;
 
+import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
+import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
+import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
+import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
+import fatec.br.projetormi.servidor.conexao.Conexao;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ynhic
@@ -16,6 +28,14 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
      */
     public Cadastro_produtosGUI() {
         initComponents();
+    }
+    Conexao conexao = new Conexao();
+    Cadastro_produtosDAO cadastro_produtosDAO = new Cadastro_produtosDAO(conexao);
+    
+    public void limparCampos(){
+        txt_lance_produto.setText("");
+        txt_nome_produto.setText("");
+        atxt_descricao_produto.setText("");
     }
 
     /**
@@ -42,6 +62,11 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         bt_voltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -75,7 +100,7 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(txt_nome_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txt_lance_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -100,6 +125,11 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         );
 
         bt_cadastrar.setText("Cadastrar");
+        bt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_cadastrarActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
 
@@ -121,18 +151,16 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_limpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_voltar)))
+                        .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(221, 221, 221)))
                 .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_cadastrar, bt_limpar, bt_voltar, jButton2});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -168,8 +196,53 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_limparActionPerformed
-        // TODO add your handling code here:
+        limparCampos();
+                
+                
     }//GEN-LAST:event_bt_limparActionPerformed
+
+    private void bt_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastrarActionPerformed
+        if(txt_lance_produto.getText().isEmpty() ||
+                txt_nome_produto.getText().isEmpty() ||
+                atxt_descricao_produto.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
+                    return;
+        }
+         
+        
+         
+         Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();
+         
+         //dados do produto
+         produtoVO.setNome_produto(txt_nome_produto.getText());
+         produtoVO.setLance_produto(txt_lance_produto.getText());
+         produtoVO.setDescricao_produto(atxt_descricao_produto.getText());     
+          
+          
+        try {
+            cadastro_produtosDAO.cadastrar_produtos(produtoVO);
+            JOptionPane.showMessageDialog(null,"Dados enviados com sucesso","Inserção completa", JOptionPane.INFORMATION_MESSAGE);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        limparCampos();
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_bt_cadastrarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        conexao.setNomeBanco("leilaoapp");
+        conexao.setPorta(3306);
+        conexao.setSenha("");
+        conexao.setServidor("localhost");
+        conexao.setUsuario("root");   
+        
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

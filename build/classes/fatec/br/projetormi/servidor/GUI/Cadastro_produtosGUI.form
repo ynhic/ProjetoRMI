@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -58,13 +61,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="bt_cadastrar" linkSize="1" min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="bt_cadastrar" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" linkSize="1" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="jButton2" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="bt_limpar" linkSize="1" min="-2" pref="63" max="-2" attributes="0"/>
+                          <Component id="bt_limpar" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-                          <Component id="bt_voltar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_voltar" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -121,7 +125,7 @@
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_nome_produto" min="-2" pref="235" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="39" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="txt_lance_produto" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
@@ -195,6 +199,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_cadastrarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
