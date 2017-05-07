@@ -1,7 +1,7 @@
 package fatec.br.projetormi.servidor.GUI;
 
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
-import br.com.fatec.conexao.Conexao;
+import fatec.br.projetormi.servidor.conexao.Conexao;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -248,6 +248,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel3)
+                .addGap(0, 0, 0)
                 .addComponent(txt_email_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -471,9 +472,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                         .addComponent(jLabel16)
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(187, 187, 187))
+                                .addComponent(jLabel1)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addComponent(txt_rg, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -541,10 +540,10 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -553,7 +552,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                     .addComponent(btCancelar)
                     .addComponent(btLimpar)
                     .addComponent(btPesquisar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -585,7 +584,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_femininoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        conexao.setNomeBanco("Hotel");
+        conexao.setNomeBanco("leilaoapp");
         conexao.setPorta(3306);
         conexao.setSenha("");
         conexao.setServidor("localhost");
@@ -650,8 +649,8 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
           cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
           cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
           cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
-          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_pais.getText());
-          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_uf.getText());
+          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
+          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
           cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
           //contatos
           cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
@@ -660,7 +659,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
           
           
         try {
-            cadastro_clientesDAO.cadastrar(cadastro_clientesVO);
+            cadastro_clientesDAO.cadastrarCli(cadastro_clientesVO);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -707,11 +706,13 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         java.util.Date dataUtil = null;
+        
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
-            Logger.getLogger(Reserva_quarto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
         java.sql.Date dataNascSql;
         dataNascSql= new java.sql.Date(dataUtil.getTime());
           
@@ -727,16 +728,17 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
           cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
           cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
           cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
-          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_pais.getText());
-          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_uf.getText());
+          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
+          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
           cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
           //contatos
           cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
           cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
           cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText()); 
         
+        
         try {
-            if (cadastro_clientesDAO.alterar(cadastro_clientesVO) == true) {
+            if (cadastro_clientesDAO.editarCli(cadastro_clientesVO) == true) {
                 JOptionPane.showMessageDialog(rootPane, "Alteração OK",
                         "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
             } else {
@@ -744,14 +746,14 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                         "Mensagem ao Usuário", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro no try " + 
-                    ex.getMessage(), "Mensagem ao Usuário", 
-                    JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        limparCampos();
+        
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        if(txt_cpf.getText().isEmpty()){
+    if(txt_cpf.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Digite o CPF para realizar a pesquisa","Alerta", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -770,7 +772,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         
         try {
             //pesquisa no banco
-            cadastro_clientesVO = cadastro_clientesDAO.pesquisarPK(cadastro_clientesVO);
+            cadastro_clientesVO = cadastro_clientesDAO.buscarCli(cadastro_clientesVO);
             if(cadastro_clientesVO == null) {
                 JOptionPane.showMessageDialog(rootPane, "Dados nao encontrados!",
                     "Mensagem ao Usuário", 
@@ -785,13 +787,23 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                 String dateString;
                 dateString = sdf.format(cadastro_clientesVO.getDatanasc());
                 
-                txt_datanasc.setText(dateString);
-                txt_email_cliente.setText(cadastro_clientesVO.getEmail());
-                txtEndereco.setText(cadastro_clientesVO.getEndereco());
                 txt_nome.setText(cadastro_clientesVO.getNome());
-                txt_rg.setText(cadastro_clientesVO.getRG());
-                txt_celular_cliente.setText(cadastro_clientesVO.getTelefone());
-                txtComplemento.setText(cadastro_clientesVO.getComplemento());
+                txt_rg.setText(cadastro_clientesVO.getRg());
+                txt_cpf.setText(cadastro_clientesVO.getCpf());
+                txt_datanasc.setText(dateString);
+
+
+                txt_endereco_cliente.setText(cadastro_clientesVO.getEndereco_cliente());
+                txt_endereco_cliente_numero.setText(cadastro_clientesVO.getEndereco_cliente_numero());
+                txt_endereco_cliente_complemento.setText(cadastro_clientesVO.getEndereco_cliente_complemento());
+                txt_endereco_cliente_cep.setText(cadastro_clientesVO.getEndereco_cliente_cep());
+                txt_endereco_cliente_cidade.setText(cadastro_clientesVO.getEndereco_cliente_cidade());
+                txt_endereco_cliente_uf.setText(cadastro_clientesVO.getEndereco_cliente_uf());
+                txt_endereco_cliente_pais.setText(cadastro_clientesVO.getEndereco_cliente_pais());
+
+                txt_email_cliente.setText(cadastro_clientesVO.getEmail_cliente());
+                txt_celular_cliente.setText(cadastro_clientesVO.getCelular_cliente());
+                txt_telefone_cliente.setText(cadastro_clientesVO.getTelefone_cliente());
                 
                 if("M".equals(cadastro_clientesVO.getSexo()))
                     rb_masculino.setSelected(true);
@@ -803,7 +815,6 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                     ex.getMessage(), "Mensagem ao Usuário", 
                     JOptionPane.ERROR_MESSAGE);
         }
-        
         
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -820,7 +831,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_cpfFocusLost
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-new Menu_principal().setVisible(true);         // TODO add your handling code here:
+//new Menu_principal().setVisible(true);         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosed
 
     private void txt_endereco_cliente_cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_endereco_cliente_cepActionPerformed
@@ -898,32 +909,12 @@ new Menu_principal().setVisible(true);         // TODO add your handling code he
     private javax.swing.ButtonGroup bt_group;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
@@ -932,15 +923,11 @@ new Menu_principal().setVisible(true);         // TODO add your handling code he
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JRadioButton rb_feminino;
@@ -949,15 +936,6 @@ new Menu_principal().setVisible(true);         // TODO add your handling code he
     private javax.swing.JFormattedTextField txt_cpf;
     private javax.swing.JFormattedTextField txt_datanasc;
     private javax.swing.JTextField txt_email_cliente;
-    private javax.swing.JTextField txt_endereco;
-    private javax.swing.JTextField txt_endereco1;
-    private javax.swing.JTextField txt_endereco2;
-    private javax.swing.JTextField txt_endereco_cep;
-    private javax.swing.JTextField txt_endereco_cep1;
-    private javax.swing.JTextField txt_endereco_cep2;
-    private javax.swing.JTextField txt_endereco_cidade;
-    private javax.swing.JTextField txt_endereco_cidade1;
-    private javax.swing.JTextField txt_endereco_cidade2;
     private javax.swing.JTextField txt_endereco_cliente;
     private javax.swing.JTextField txt_endereco_cliente_cep;
     private javax.swing.JTextField txt_endereco_cliente_cidade;
@@ -965,18 +943,6 @@ new Menu_principal().setVisible(true);         // TODO add your handling code he
     private javax.swing.JTextField txt_endereco_cliente_numero;
     private javax.swing.JTextField txt_endereco_cliente_pais;
     private javax.swing.JTextField txt_endereco_cliente_uf;
-    private javax.swing.JTextField txt_endereco_complemento;
-    private javax.swing.JTextField txt_endereco_complemento1;
-    private javax.swing.JTextField txt_endereco_complemento2;
-    private javax.swing.JTextField txt_endereco_numero;
-    private javax.swing.JTextField txt_endereco_numero1;
-    private javax.swing.JTextField txt_endereco_numero2;
-    private javax.swing.JTextField txt_endereco_pais;
-    private javax.swing.JTextField txt_endereco_pais1;
-    private javax.swing.JTextField txt_endereco_pais2;
-    private javax.swing.JTextField txt_endereco_uf;
-    private javax.swing.JTextField txt_endereco_uf1;
-    private javax.swing.JTextField txt_endereco_uf2;
     private javax.swing.JTextField txt_nome;
     private javax.swing.JFormattedTextField txt_rg;
     private javax.swing.JFormattedTextField txt_telefone_cliente;

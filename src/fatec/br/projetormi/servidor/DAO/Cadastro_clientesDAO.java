@@ -37,21 +37,7 @@ public class Cadastro_clientesDAO
         this.conexao = conexao;
     }
     
-    public void cadastrarCli(String nome,
-    String rg,
-    String cpf,
-    Date datanasc,
-    String sexo,
-    String endereco_cliente,
-    String endereco_cliente_numero,
-    String endereco_cliente_complemento,
-    String endereco_cliente_cep,
-    String endereco_cliente_cidade,
-    String endereco_cliente_uf,
-    String endereco_cliente_pais,
-    String email_cliente,
-    String celular_cliente,
-    String telefone_cliente) throws SQLException 
+    public void cadastrarCli(Cadastro_clientesVO obj) throws SQLException 
     {
     /**
      * @param nome nome a ser inserido na coluna nomeCli da tabela "tabCliente"
@@ -66,27 +52,27 @@ public class Cadastro_clientesDAO
         sql = "Insert into tabCliente (nome_cliente, rg_cliente, cpf_cliente, datanasc_cliente, sexo_cliente,"
                 + " endereco_cliente, endereco_cliente_numero, endereco_cliente_complemento, "
                 + "endereco_cliente_cep, endereco_cliente_cidade, endereco_cliente_uf, endereco_cliente_pais,"
-                + " email_cliente, celular_cliente, telefone_cliente) values (?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ?, ?)"; //Comando SQL para cadastro   
+                + " email_cliente, celular_cliente, telefone_cliente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Comando SQL para cadastro   
         
         pst = conexao.con().prepareStatement(sql);       
         //dados pessoais        
-        pst.setString(1, nome);//Troca "?" do comando SQL
-        pst.setString(2,rg);//Troca "?" do comando SQL
-        pst.setString(3,cpf);//Troca "?" do comando SQL
-        pst.setDate(4,datanasc);//Troca "?" do comando SQL
-        pst.setString(5,sexo);//Troca "?" do comando SQL
+        pst.setString(1, obj.getNome());//Troca "?" do comando SQL
+        pst.setString(2,obj.getRg());//Troca "?" do comando SQL
+        pst.setString(3,obj.getCpf());//Troca "?" do comando SQL
+        pst.setDate(4,obj.getDatanasc());//Troca "?" do comando SQL
+        pst.setString(5,obj.getSexo());//Troca "?" do comando SQL
         //endereco
-        pst.setString(6,endereco_cliente);//Troca "?" do comando SQL
-        pst.setString(7,endereco_cliente_numero);//Troca "?" do comando SQL
-        pst.setString(8,endereco_cliente_complemento);//Troca "?" do comando SQL
-        pst.setString(9,endereco_cliente_cep);//Troca "?" do comando SQL
-        pst.setString(10,endereco_cliente_cidade);//Troca "?" do comando SQL
-        pst.setString(11,endereco_cliente_uf);//Troca "?" do comando SQL
-        pst.setString(12,endereco_cliente_pais);//Troca "?" do comando SQL
+        pst.setString(6,obj.getEndereco_cliente());//Troca "?" do comando SQL
+        pst.setString(7,obj.getEndereco_cliente_numero());//Troca "?" do comando SQL
+        pst.setString(8,obj.getEndereco_cliente_complemento());//Troca "?" do comando SQL
+        pst.setString(9,obj.getEndereco_cliente_cep());//Troca "?" do comando SQL
+        pst.setString(10,obj.getEndereco_cliente_cidade());//Troca "?" do comando SQL
+        pst.setString(11,obj.getEndereco_cliente_uf());//Troca "?" do comando SQL
+        pst.setString(12,obj.getEndereco_cliente_pais());//Troca "?" do comando SQL
         //contato
-        pst.setString(13,email_cliente);//Troca "?" do comando SQL
-        pst.setString(14,celular_cliente);//Troca "?" do comando SQL
-        pst.setString(15,telefone_cliente);//Troca "?" do comando SQL
+        pst.setString(13,obj.getEmail_cliente());//Troca "?" do comando SQL
+        pst.setString(14,obj.getCelular_cliente());//Troca "?" do comando SQL
+        pst.setString(15,obj.getTelefone_cliente());//Troca "?" do comando SQL
         
         
         pst.executeUpdate(); //Execulta o comando SQL
@@ -94,7 +80,7 @@ public class Cadastro_clientesDAO
         conexao.fechar(); //Fecha a conexao com o banco
     }        
     
-    public Cadastro_clientesVO buscarCli(String cpf) throws SQLException 
+    public Cadastro_clientesVO buscarCli(Cadastro_clientesVO clienteVO) throws SQLException 
     {
     /**
      * @param cpf sera procurado na coluna de cpfCli na tabela "tabCliente"
@@ -105,12 +91,12 @@ public class Cadastro_clientesDAO
      * Este metodo busca os dados referente ao String cpf, passado por paramentro, na tabela de "tabCliente" do banco de dados "LeilaoRMI" 
      */     
         conexao.abrir(); //Abre a conexao com o banco
-        Cadastro_clientesVO clienteVO = new Cadastro_clientesVO(); //Cria o objeto clienteVO
+        //Cadastro_clientesVO clienteVO = new Cadastro_clientesVO(); //Cria o objeto clienteVO
         
         sql = "select * from tabCliente where cpf_cliente = ?"; //Comando SQL para busca
         
         pst = conexao.con().prepareStatement(sql); 
-        pst.setString(1, cpf); //Troca "?" do comando SQL
+        pst.setString(1, clienteVO.getCpf()); //Troca "?" do comando SQL
         rs = pst.executeQuery(); //Executa o comando SQL
 
         if (rs.next()) //Quando encontrado...
@@ -145,21 +131,7 @@ public class Cadastro_clientesDAO
         return clienteVO; //Retorna o objeto clienteVO           
     }
     
-    public void editarCli(String nome,
-    String rg,
-    String cpf,
-    Date datanasc,
-    String sexo,
-    String endereco_cliente,
-    String endereco_cliente_numero,
-    String endereco_cliente_complemento,
-    String endereco_cliente_cep,
-    String endereco_cliente_cidade,
-    String endereco_cliente_uf,
-    String endereco_cliente_pais,
-    String email_cliente,
-    String celular_cliente,
-    String telefone_cliente) throws SQLException  
+    public boolean editarCli(Cadastro_clientesVO obj) throws SQLException  
     {
     /**
      * @param nome nome a ser alterado na coluna nomeCli da tabela "tabCliente"
@@ -178,26 +150,29 @@ public class Cadastro_clientesDAO
                 
         pst = conexao.con().prepareStatement(sql);
         
-        pst.setString(1, nome);//Troca "?" do comando SQL
-        pst.setString(2,rg);//Troca "?" do comando SQL
-        pst.setString(15,cpf);//Troca "?" do comando SQL
-        pst.setDate(3,datanasc);//Troca "?" do comando SQL
-        pst.setString(4,sexo);//Troca "?" do comando SQL
+        //dados pessoais        
+        pst.setString(1, obj.getNome());//Troca "?" do comando SQL
+        pst.setString(2,obj.getRg());//Troca "?" do comando SQL
+        pst.setString(15,obj.getCpf());//Troca "?" do comando SQL
+        pst.setDate(3,obj.getDatanasc());//Troca "?" do comando SQL
+        pst.setString(4,obj.getSexo());//Troca "?" do comando SQL
         //endereco
-        pst.setString(5,endereco_cliente);//Troca "?" do comando SQL
-        pst.setString(6,endereco_cliente_numero);//Troca "?" do comando SQL
-        pst.setString(7,endereco_cliente_complemento);//Troca "?" do comando SQL
-        pst.setString(8,endereco_cliente_cep);//Troca "?" do comando SQL
-        pst.setString(9,endereco_cliente_cidade);//Troca "?" do comando SQL
-        pst.setString(10,endereco_cliente_uf);//Troca "?" do comando SQL
-        pst.setString(11,endereco_cliente_pais);//Troca "?" do comando SQL
+        pst.setString(5,obj.getEndereco_cliente());//Troca "?" do comando SQL
+        pst.setString(6,obj.getEndereco_cliente_numero());//Troca "?" do comando SQL
+        pst.setString(7,obj.getEndereco_cliente_complemento());//Troca "?" do comando SQL
+        pst.setString(8,obj.getEndereco_cliente_cep());//Troca "?" do comando SQL
+        pst.setString(9,obj.getEndereco_cliente_cidade());//Troca "?" do comando SQL
+        pst.setString(10,obj.getEndereco_cliente_uf());//Troca "?" do comando SQL
+        pst.setString(11,obj.getEndereco_cliente_pais());//Troca "?" do comando SQL
         //contato
-        pst.setString(12,email_cliente);//Troca "?" do comando SQL
-        pst.setString(13,celular_cliente);//Troca "?" do comando SQL
-        pst.setString(14,telefone_cliente);//Troca "?" do comando SQL        
-
+        pst.setString(12,obj.getEmail_cliente());//Troca "?" do comando SQL
+        pst.setString(13,obj.getCelular_cliente());//Troca "?" do comando SQL
+        pst.setString(14,obj.getTelefone_cliente());//Troca "?" do comando SQL      
+ 
         pst.execute(); //Executa o comando SQL
-        conexao.fechar(); //Fecha a conexao com o banco   
+        conexao.fechar(); //Fecha a conexao com o banco 
+        return true;
+       
     }
     
     public void deletarCli(String cpf) throws SQLException

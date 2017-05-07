@@ -33,7 +33,9 @@ public class Conexao {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://" + getServidor() + ":" + getPorta() + "/" + getNomeBanco();
             setConexao(DriverManager.getConnection(url, getUsuario(), getSenha()));
+            System.out.println("abriu");
             return true;
+            
         } 
         catch (SQLException ex) 
         {
