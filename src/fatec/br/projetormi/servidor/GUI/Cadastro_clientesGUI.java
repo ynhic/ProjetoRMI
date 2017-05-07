@@ -1,8 +1,8 @@
 package fatec.br.projetormi.servidor.GUI;
 
-import br.com.fatec.DAO.Cadastro_clientesDAO;
-import br.com.fatec.VO.Cadastro_clientesVO;
+import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
 import br.com.fatec.conexao.Conexao;
+import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -594,18 +594,24 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         
-        if (txtComplemento.getText().isEmpty() ||
-            txt_cpf.getText().isEmpty() ||
-            txt_datanasc.getText().isEmpty() ||
-            txt_email_cliente.getText().isEmpty() ||
-            txtEndereco.getText().isEmpty() ||
-            txt_nome.getText().isEmpty() ||
-            txt_rg.getText().isEmpty() ||
-            txt_celular_cliente.getText().isEmpty() ||
-            rb_masculino.getText().isEmpty() ||
-            rb_feminino.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
-            return;
+        if(txt_telefone_cliente.getText().isEmpty() ||
+                txt_nome.getText().isEmpty() ||
+                txt_rg.getText().isEmpty() ||
+                txt_cpf.getText().isEmpty() ||
+                txt_datanasc.getText().isEmpty() ||
+                rb_masculino.getText().isEmpty() ||
+                rb_feminino.getText().isEmpty() ||
+                txt_endereco_cliente.getText().isEmpty() ||
+                txt_endereco_cliente_numero.getText().isEmpty() ||
+                txt_endereco_cliente_complemento.getText().isEmpty() ||
+                txt_endereco_cliente_cep.getText().isEmpty() ||
+                txt_endereco_cliente_cidade.getText().isEmpty() ||
+                txt_endereco_cliente_uf.getText().isEmpty() ||
+                txt_endereco_cliente_pais.getText().isEmpty() ||
+                txt_email_cliente.getText().isEmpty() ||
+                txt_celular_cliente.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
+                    return;
         }
          
         
@@ -619,28 +625,39 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
               sexo="F";
           }
           
-           String strData = txt_datanasc.getText();
+        String strData = txt_datanasc.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
         java.util.Date dataUtil = null;
+        
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
-            Logger.getLogger(Reserva_quarto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         java.sql.Date dataNascSql;
         dataNascSql= new java.sql.Date(dataUtil.getTime());
           
-          
-          cadastro_clientesVO.setComplemento(txtComplemento.getText());
-          cadastro_clientesVO.setSexo(sexo);
-          cadastro_clientesVO.setCpf(txt_cpf.getText());
+          //dados pessoais
           cadastro_clientesVO.setNome(txt_nome.getText());
+          cadastro_clientesVO.setRg(txt_rg.getText());
+          cadastro_clientesVO.setCpf(txt_cpf.getText());
+          cadastro_clientesVO.setSexo(sexo);
           cadastro_clientesVO.setDatanasc(dataNascSql);
-          cadastro_clientesVO.setEmail(txt_email_cliente.getText());
-          cadastro_clientesVO.setEndereco(txtEndereco.getText());
-          cadastro_clientesVO.setRG(txt_rg.getText());
-          cadastro_clientesVO.setTelefone(txt_celular_cliente.getText());
+          //endereço
+          cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
+          cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
+          cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
+          cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
+          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_pais.getText());
+          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_uf.getText());
+          cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
+          //contatos
+          cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
+          cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
+          cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText());         
+          
           
         try {
             cadastro_clientesDAO.cadastrar(cadastro_clientesVO);
@@ -656,16 +673,22 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_masculinoActionPerformed
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        if (txtComplemento.getText().isEmpty() ||
-            txt_cpf.getText().isEmpty() ||
-            txt_datanasc.getText().isEmpty() ||
-            txt_email_cliente.getText().isEmpty() ||
-            txtEndereco.getText().isEmpty() ||
-            txt_nome.getText().isEmpty() ||
-            txt_rg.getText().isEmpty() ||
-            txt_celular_cliente.getText().isEmpty() ||
-            rb_masculino.getText().isEmpty() ||
-            rb_feminino.getText().isEmpty()){
+        if(txt_telefone_cliente.getText().isEmpty() ||
+                txt_nome.getText().isEmpty() ||
+                txt_rg.getText().isEmpty() ||
+                txt_cpf.getText().isEmpty() ||
+                txt_datanasc.getText().isEmpty() ||
+                rb_masculino.getText().isEmpty() ||
+                rb_feminino.getText().isEmpty() ||
+                txt_endereco_cliente.getText().isEmpty() ||
+                txt_endereco_cliente_numero.getText().isEmpty() ||
+                txt_endereco_cliente_complemento.getText().isEmpty() ||
+                txt_endereco_cliente_cep.getText().isEmpty() ||
+                txt_endereco_cliente_cidade.getText().isEmpty() ||
+                txt_endereco_cliente_uf.getText().isEmpty() ||
+                txt_endereco_cliente_pais.getText().isEmpty() ||
+                txt_email_cliente.getText().isEmpty() ||
+                txt_celular_cliente.getText().isEmpty()){
             JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -693,15 +716,24 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         dataNascSql= new java.sql.Date(dataUtil.getTime());
           
           
-          cadastro_clientesVO.setComplemento(txtComplemento.getText());
-          cadastro_clientesVO.setSexo(sexo);
-          cadastro_clientesVO.setCpf(txt_cpf.getText());
+          //dados pessoais
           cadastro_clientesVO.setNome(txt_nome.getText());
+          cadastro_clientesVO.setRg(txt_rg.getText());
+          cadastro_clientesVO.setCpf(txt_cpf.getText());
+          cadastro_clientesVO.setSexo(sexo);
           cadastro_clientesVO.setDatanasc(dataNascSql);
-          cadastro_clientesVO.setEmail(txt_email_cliente.getText());
-          cadastro_clientesVO.setEndereco(txtEndereco.getText());
-          cadastro_clientesVO.setRG(txt_rg.getText());
-          cadastro_clientesVO.setTelefone(txt_celular_cliente.getText());
+          //endereço
+          cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
+          cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
+          cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
+          cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
+          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_pais.getText());
+          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_uf.getText());
+          cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
+          //contatos
+          cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
+          cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
+          cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText()); 
         
         try {
             if (cadastro_clientesDAO.alterar(cadastro_clientesVO) == true) {
