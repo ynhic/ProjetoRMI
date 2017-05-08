@@ -12,21 +12,30 @@ import java.sql.Date;
  * @author ynhic
  */
 public class Cadastro_clientesVO {
-    String nome;
-    String rg;
-    String cpf;
-    Date datanasc;
-    String sexo;
-    String endereco_cliente;
-    String endereco_cliente_numero;
-    String endereco_cliente_complemento;
-    String endereco_cliente_cep;
-    String endereco_cliente_cidade;
-    String endereco_cliente_uf;
-    String endereco_cliente_pais;
-    String email_cliente;
-    String celular_cliente;
-    String telefone_cliente;
+    private String nome;
+    private String rg;
+    private String cpf;
+    private Date datanasc;
+    private String sexo;
+    private String endereco_cliente;
+    private String endereco_cliente_numero;
+    private String endereco_cliente_complemento;
+    private String endereco_cliente_cep;
+    private String endereco_cliente_cidade;
+    private String endereco_cliente_uf;
+    private String endereco_cliente_pais;
+    private String email_cliente;
+    private String celular_cliente;
+    private String telefone_cliente;
+    private String senha_cliente;
+
+    public String getSenha_cliente() {
+        return senha_cliente;
+    }
+
+    public void setSenha_cliente(String senha_cliente) {
+        this.senha_cliente = senha_cliente;
+    }
 
     public String getNome() {
         return nome;

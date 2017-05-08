@@ -14,8 +14,7 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 
-public class Cadastro_clientesDAO 
-{
+public class Cadastro_clientesDAO {
 //------------ Atributos ------------   
     
     private Conexao conexao;
@@ -52,7 +51,7 @@ public class Cadastro_clientesDAO
         sql = "Insert into tabCliente (nome_cliente, rg_cliente, cpf_cliente, datanasc_cliente, sexo_cliente,"
                 + " endereco_cliente, endereco_cliente_numero, endereco_cliente_complemento, "
                 + "endereco_cliente_cep, endereco_cliente_cidade, endereco_cliente_uf, endereco_cliente_pais,"
-                + " email_cliente, celular_cliente, telefone_cliente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Comando SQL para cadastro   
+                + " email_cliente, celular_cliente, telefone_cliente, senha_cliente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //Comando SQL para cadastro   
         
         pst = conexao.con().prepareStatement(sql);       
         //dados pessoais        
@@ -73,6 +72,7 @@ public class Cadastro_clientesDAO
         pst.setString(13,obj.getEmail_cliente());//Troca "?" do comando SQL
         pst.setString(14,obj.getCelular_cliente());//Troca "?" do comando SQL
         pst.setString(15,obj.getTelefone_cliente());//Troca "?" do comando SQL
+        pst.setString(16, obj.getSenha_cliente());
         
         
         pst.executeUpdate(); //Execulta o comando SQL
@@ -120,7 +120,8 @@ public class Cadastro_clientesDAO
             clienteVO.setEmail_cliente(rs.getString("email_cliente")); //Armazena o conteudo da coluna "email_cliente" na variavel email_cliente do objeto clienteVO
             clienteVO.setCelular_cliente(rs.getString("celular_cliente")); //Armazena o conteudo da coluna "celular_cliente" na variavel celular_cliente do objeto clienteVO
             clienteVO.setTelefone_cliente(rs.getString("telefone_cliente")); //Armazena o conteudo da coluna "telefone_cliente" na variavel telefone_cliente do objeto clienteVO
-
+            clienteVO.setSenha_cliente((rs.getString("senha_cliente")));
+            
         } 
         else //Se nao encontrar...
         {
@@ -146,7 +147,7 @@ public class Cadastro_clientesDAO
         sql = "update tabcliente set nome_cliente = ?, rg_cliente = ?, datanasc_cliente = ?, sexo_cliente = ?,"
                 + " endereco_cliente = ?, endereco_cliente_numero = ?, endereco_cliente_complemento = ?, "
                 + "endereco_cliente_cep = ?, endereco_cliente_cidade = ?, endereco_cliente_uf = ?, endereco_cliente_pais = ?,"
-                + " email_cliente = ?, celular_cliente = ?, telefone_cliente = ? WHERE cpf_cliente = ?"; //Comando SQL para editarCli            
+                + " email_cliente = ?, celular_cliente = ?, telefone_cliente = ?, senha_cliente = ? WHERE cpf_cliente = ?"; //Comando SQL para editarCli            
                 
         pst = conexao.con().prepareStatement(sql);
         
@@ -167,7 +168,8 @@ public class Cadastro_clientesDAO
         //contato
         pst.setString(12,obj.getEmail_cliente());//Troca "?" do comando SQL
         pst.setString(13,obj.getCelular_cliente());//Troca "?" do comando SQL
-        pst.setString(14,obj.getTelefone_cliente());//Troca "?" do comando SQL      
+        pst.setString(14,obj.getTelefone_cliente());//Troca "?" do comando SQL
+        pst.setString(16, obj.getSenha_cliente());
  
         pst.execute(); //Executa o comando SQL
         conexao.fechar(); //Fecha a conexao com o banco 
@@ -192,35 +194,5 @@ public class Cadastro_clientesDAO
         conexao.fechar(); //Fecha a conexao com o banco
     }        
     
-   /* public List<Cadastro_clientesVO> listar() throws SQLException 
-    {
-    /**
-     * @return List lista_cliente
-     * 
-     * Este metodo busca todos clientes no banco de dados e os armazena em um List  
-     */ 
-        /*List <Cadastro_clientesVO> lista_cliente = new Vector<Cadastro_clientesVO>();
-   
-        conexao.abrir(); //Abre conexao com banco
-        sql = "select * from tabCliente"; //Comando SQL para listagem
-        
-        st = conexao.con().createStatement();
-        rs = st.executeQuery(sql); //Executa o comando SQL
-        
-        while(rs.next()) //Quando encontrado...
-        {
-            clienteVO = new Cadastro_clientesVO(); //Instacia um novo ProdutoVO
-            clienteVO.setIdCLi(rs.getInt("idCli"));
-            clienteVO.setCpf(rs.getString("cpfCli"));
-            clienteVO.setNome(rs.getString("nomeCli"));
-            clienteVO.setData(rs.getString("DataCli"));
-            clienteVO.setTelefone(rs.getString("telCli"));
-            clienteVO.setAposentado(rs.getString("statusCli"));
-            
-            lista_cliente.add(clienteVO); //Adicona o produtoVO criado no List
-        }
-        conexao.fechar(); //Fecha conexao com o banco
-        return lista_cliente; //Retorna o List 
-    }*/
 }
 

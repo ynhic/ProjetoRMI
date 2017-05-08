@@ -226,11 +226,7 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        limparCampos();
-        
-        
-        
-        
+        limparCampos();       
         
     }//GEN-LAST:event_bt_cadastrarActionPerformed
 
