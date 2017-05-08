@@ -27,7 +27,9 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
      * Creates new form AutentificacaoGUI
      */
     public AutentificacaoGUI() {
+        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

@@ -28,6 +28,7 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
      */
     public Cadastro_produtosGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     Conexao conexao = new Conexao();
     Cadastro_produtosDAO cadastro_produtosDAO = new Cadastro_produtosDAO(conexao);

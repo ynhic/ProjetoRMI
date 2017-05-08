@@ -55,6 +55,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
      */
     public Cadastro_clientesGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
