@@ -6,8 +6,14 @@
 package fatec.br.projetormi.servidor.GUI;
 
 import fatec.br.projetormi.servidor.DAO.AutentificacaoDAO;
+import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.VO.AutentificacaoVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -162,13 +168,40 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_cadastroActionPerformed
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
-       
+        
         String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
+        String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha
+        boolean valida;
+        ServidorInter objeto1 = null;
+
+        try {
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            valida = objeto1.validarSenha(email,senha );
+
+            if (valida == true) {
+                MenuGUI menu = new MenuGUI();
+                menu.setVisible(true);
+                this.dispose();
+            } else {
+                if (email.equals("") && senha.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Digite email e senha para entrar", "Atenção", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email ou senha incorretos", "Atenção", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
+        }
+        
+        
+        
+        
+       /* String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
         String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha 
         AutentificacaoVO autentificacaoVO = new AutentificacaoVO();
-        
-        
-        
+               
         try {
             autentificacaoVO = autentificacaoDAO.validarSenha(email, senha);
             if(autentificacaoVO != null){
@@ -185,7 +218,7 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AutentificacaoGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        */
         
         
         

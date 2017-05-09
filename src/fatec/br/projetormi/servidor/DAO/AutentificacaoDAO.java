@@ -36,6 +36,8 @@ public class AutentificacaoDAO {
      */      
         this.conexao = conexao;
     }
+
+    
     
     
     
@@ -63,7 +65,7 @@ public class AutentificacaoDAO {
             autentificacaoVO = new AutentificacaoVO(); //Instancia um novo objeto ClienteVO 
             //dados pessoais
             autentificacaoVO.setEmail(rs.getString("email_cliente")); //Armazena o conteudo da coluna "nome_cliente" na variavel nome do objeto clienteVO
-            autentificacaoVO.setSenha("senha_cliente");
+            autentificacaoVO.setSenha(rs.getString("senha_cliente"));
             
         } 
         else //Se nao encontrar...
