@@ -629,93 +629,91 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         
         boolean valida;
         ServidorInter objeto1 = null;
-        
-        
-        if(txt_telefone_cliente.getText().isEmpty() ||
-                txt_nome.getText().isEmpty() ||
-                txt_rg.getText().isEmpty() ||
-                txt_cpf.getText().isEmpty() ||
-                txt_datanasc.getText().isEmpty() ||
-                rb_masculino.getText().isEmpty() ||
-                rb_feminino.getText().isEmpty() ||
-                txt_endereco_cliente.getText().isEmpty() ||
-                txt_endereco_cliente_numero.getText().isEmpty() ||
-                txt_endereco_cliente_complemento.getText().isEmpty() ||
-                txt_endereco_cliente_cep.getText().isEmpty() ||
-                txt_endereco_cliente_cidade.getText().isEmpty() ||
-                txt_endereco_cliente_uf.getText().isEmpty() ||
-                txt_endereco_cliente_pais.getText().isEmpty() ||
-                txt_email_cliente.getText().isEmpty() ||
-                txt_celular_cliente.getText().isEmpty() ||
-                ptxt_senha_cliente.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
-                    return;
+
+        if (txt_telefone_cliente.getText().isEmpty()
+                || txt_nome.getText().isEmpty()
+                || txt_rg.getText().isEmpty()
+                || txt_cpf.getText().isEmpty()
+                || txt_datanasc.getText().isEmpty()
+                || rb_masculino.getText().isEmpty()
+                || rb_feminino.getText().isEmpty()
+                || txt_endereco_cliente.getText().isEmpty()
+                || txt_endereco_cliente_numero.getText().isEmpty()
+                || txt_endereco_cliente_complemento.getText().isEmpty()
+                || txt_endereco_cliente_cep.getText().isEmpty()
+                || txt_endereco_cliente_cidade.getText().isEmpty()
+                || txt_endereco_cliente_uf.getText().isEmpty()
+                || txt_endereco_cliente_pais.getText().isEmpty()
+                || txt_email_cliente.getText().isEmpty()
+                || txt_celular_cliente.getText().isEmpty()
+                || ptxt_senha_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite campos obrigatórios", "Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-         
-        
-         Cadastro_clientesVO cadastro_clientesVO = new Cadastro_clientesVO();
-          
-          
-          if (rb_masculino.isSelected()){
-              sexo="M";
-          }
-          if(rb_feminino.isSelected()){
-              sexo="F";
-          }
-          
+
+        Cadastro_clientesVO cadastro_clientesVO = new Cadastro_clientesVO();
+
+        if (rb_masculino.isSelected()) {
+            sexo = "M";
+        }
+        if (rb_feminino.isSelected()) {
+            sexo = "F";
+        }
+
         String strData = txt_datanasc.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         java.util.Date dataUtil = null;
-        
+
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         java.sql.Date dataNascSql;
-        dataNascSql= new java.sql.Date(dataUtil.getTime());
-          
-          //dados pessoais
-          cadastro_clientesVO.setNome(txt_nome.getText());
-          cadastro_clientesVO.setRg(txt_rg.getText());
-          cadastro_clientesVO.setCpf(txt_cpf.getText());
-          cadastro_clientesVO.setSexo(sexo);
-          cadastro_clientesVO.setDatanasc(dataNascSql);
-          //endereço
-          cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
-          cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
-          cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
-          cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
-          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
-          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
-          cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
-          //contatos
-          cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
-          cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
-          cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText()); 
-          cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
-          
-          
-        
-          try {
+        dataNascSql = new java.sql.Date(dataUtil.getTime());
+
+        //dados pessoais
+        cadastro_clientesVO.setNome(txt_nome.getText());
+        cadastro_clientesVO.setRg(txt_rg.getText());
+        cadastro_clientesVO.setCpf(txt_cpf.getText());
+        cadastro_clientesVO.setSexo(sexo);
+        cadastro_clientesVO.setDatanasc(dataNascSql);
+        //endereço
+        cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
+        cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
+        cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
+        cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
+        cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
+        cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
+        cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
+        //contatos
+        cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
+        cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
+        cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText());
+        cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
+
+        try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
             valida = objeto1.cadastrarCli(cadastro_clientesVO);
 
-            if(valida == true){
-            JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
+            if (valida == true) {
+                JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
                         "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                AutentificacaoGUI autentificacaoGUI = new AutentificacaoGUI();
+                autentificacaoGUI.setVisible(true);
             }
-            
+
         } catch (MalformedURLException | RemoteException | NotBoundException e) {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         }
-          
-          
-         /* 
+        
+
+        /* 
           try {
             cadastro_clientesDAO.cadastrarCli(cadastro_clientesVO);
             JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
@@ -723,83 +721,80 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         } */
-         
         limparCampos();
-                  
+
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void rb_masculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rb_masculinoActionPerformed
-        
+
     }//GEN-LAST:event_rb_masculinoActionPerformed
 
     private void btAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAlterarActionPerformed
-        if(txt_telefone_cliente.getText().isEmpty() ||
-                txt_nome.getText().isEmpty() ||
-                txt_rg.getText().isEmpty() ||
-                txt_cpf.getText().isEmpty() ||
-                txt_datanasc.getText().isEmpty() ||
-                rb_masculino.getText().isEmpty() ||
-                rb_feminino.getText().isEmpty() ||
-                txt_endereco_cliente.getText().isEmpty() ||
-                txt_endereco_cliente_numero.getText().isEmpty() ||
-                txt_endereco_cliente_complemento.getText().isEmpty() ||
-                txt_endereco_cliente_cep.getText().isEmpty() ||
-                txt_endereco_cliente_cidade.getText().isEmpty() ||
-                txt_endereco_cliente_uf.getText().isEmpty() ||
-                txt_endereco_cliente_pais.getText().isEmpty() ||
-                txt_email_cliente.getText().isEmpty() ||
-                txt_celular_cliente.getText().isEmpty() ||
-                ptxt_senha_cliente.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
+        if (txt_telefone_cliente.getText().isEmpty()
+                || txt_nome.getText().isEmpty()
+                || txt_rg.getText().isEmpty()
+                || txt_cpf.getText().isEmpty()
+                || txt_datanasc.getText().isEmpty()
+                || rb_masculino.getText().isEmpty()
+                || rb_feminino.getText().isEmpty()
+                || txt_endereco_cliente.getText().isEmpty()
+                || txt_endereco_cliente_numero.getText().isEmpty()
+                || txt_endereco_cliente_complemento.getText().isEmpty()
+                || txt_endereco_cliente_cep.getText().isEmpty()
+                || txt_endereco_cliente_cidade.getText().isEmpty()
+                || txt_endereco_cliente_uf.getText().isEmpty()
+                || txt_endereco_cliente_pais.getText().isEmpty()
+                || txt_email_cliente.getText().isEmpty()
+                || txt_celular_cliente.getText().isEmpty()
+                || ptxt_senha_cliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite campos obrigatórios", "Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
         //cria um novo clienteVO
         Cadastro_clientesVO cadastro_clientesVO = new Cadastro_clientesVO();
         //seta as informaçoes do clienteVO
-        if (rb_masculino.isSelected()){
-              sexo="M";
-          }
-          if(rb_feminino.isSelected()){
-              sexo="F";
-          }
-          
+        if (rb_masculino.isSelected()) {
+            sexo = "M";
+        }
+        if (rb_feminino.isSelected()) {
+            sexo = "F";
+        }
+
         String strData = txt_datanasc.getText();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         java.util.Date dataUtil = null;
-        
+
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         java.sql.Date dataNascSql;
-        dataNascSql= new java.sql.Date(dataUtil.getTime());
-          
-          
-          //dados pessoais
-          cadastro_clientesVO.setNome(txt_nome.getText());
-          cadastro_clientesVO.setRg(txt_rg.getText());
-          cadastro_clientesVO.setCpf(txt_cpf.getText());
-          cadastro_clientesVO.setSexo(sexo);
-          cadastro_clientesVO.setDatanasc(dataNascSql);
-          //endereço
-          cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
-          cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
-          cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
-          cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
-          cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
-          cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
-          cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
-          //contatos
-          cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
-          cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
-          cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText()); 
-          cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
-        
-        
+        dataNascSql = new java.sql.Date(dataUtil.getTime());
+
+        //dados pessoais
+        cadastro_clientesVO.setNome(txt_nome.getText());
+        cadastro_clientesVO.setRg(txt_rg.getText());
+        cadastro_clientesVO.setCpf(txt_cpf.getText());
+        cadastro_clientesVO.setSexo(sexo);
+        cadastro_clientesVO.setDatanasc(dataNascSql);
+        //endereço
+        cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
+        cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
+        cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
+        cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
+        cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
+        cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
+        cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
+        //contatos
+        cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
+        cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
+        cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText());
+        cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
+
         try {
             if (cadastro_clientesDAO.editarCli(cadastro_clientesVO) == true) {
                 JOptionPane.showMessageDialog(rootPane, "Alteração OK",
@@ -816,27 +811,79 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         limparCampos();
-        
+
     }//GEN-LAST:event_btAlterarActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-    if(txt_cpf.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Digite o CPF para realizar a pesquisa","Alerta", JOptionPane.INFORMATION_MESSAGE);
+        if (txt_cpf.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite o CPF para realizar a pesquisa", "Alerta", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        
+
+        ServidorInter objeto1 = null;
         Cadastro_clientesVO cadastro_clientesVO = new Cadastro_clientesVO();
         //abastecer com a PK
-        
+
         cadastro_clientesVO.setCpf(txt_cpf.getText());
-        
-         /* String CPF;
+
+        /* String CPF;
         CPF = txtCpf.getValue().toString();
         cadastro_clientesVO.setCpf(CPF);*/
-        
-        
-        
-        
+        try {
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            cadastro_clientesVO = objeto1.buscarCli(cadastro_clientesVO);
+
+            if (cadastro_clientesVO == null) {
+                JOptionPane.showMessageDialog(rootPane, "Dados nao encontrados!",
+                        "Mensagem ao Usuário",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                //achou, entao jogar dados para tela
+
+                txt_cpf.setText(cadastro_clientesVO.getCpf());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+                String dateString;
+                dateString = sdf.format(cadastro_clientesVO.getDatanasc());
+
+                txt_nome.setText(cadastro_clientesVO.getNome());
+                txt_rg.setText(cadastro_clientesVO.getRg());
+                txt_cpf.setText(cadastro_clientesVO.getCpf());
+                txt_datanasc.setText(dateString);
+
+                txt_endereco_cliente.setText(cadastro_clientesVO.getEndereco_cliente());
+                txt_endereco_cliente_numero.setText(cadastro_clientesVO.getEndereco_cliente_numero());
+                txt_endereco_cliente_complemento.setText(cadastro_clientesVO.getEndereco_cliente_complemento());
+                txt_endereco_cliente_cep.setText(cadastro_clientesVO.getEndereco_cliente_cep());
+                txt_endereco_cliente_cidade.setText(cadastro_clientesVO.getEndereco_cliente_cidade());
+                txt_endereco_cliente_uf.setText(cadastro_clientesVO.getEndereco_cliente_uf());
+                txt_endereco_cliente_pais.setText(cadastro_clientesVO.getEndereco_cliente_pais());
+
+                txt_email_cliente.setText(cadastro_clientesVO.getEmail_cliente());
+                txt_celular_cliente.setText(cadastro_clientesVO.getCelular_cliente());
+                txt_telefone_cliente.setText(cadastro_clientesVO.getTelefone_cliente());
+                ptxt_senha_cliente.setText(cadastro_clientesVO.getSenha_cliente());
+
+                if ("M".equals(cadastro_clientesVO.getSexo())) {
+                    rb_masculino.setSelected(true);
+                }
+                if ("F".equals(cadastro_clientesVO.getSexo())) {
+                    rb_feminino.setSelected(true);
+                }
+
+                btAlterar.setEnabled(true);
+                bt_excluir.setEnabled(true);
+                btCadastrar.setEnabled(false);
+            }
+
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
+        }
+         
+         
+        /*
         try {
             //pesquisa no banco
             cadastro_clientesVO = cadastro_clientesDAO.buscarCli(cadastro_clientesVO);
@@ -886,7 +933,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Erro no try " + 
                     ex.getMessage(), "Mensagem ao Usuário", 
                     JOptionPane.ERROR_MESSAGE);
-        }
+        }*/
         
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -936,15 +983,24 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
      */    
         String cpf = txt_cpf.getText(); //Armazena o cpf digitado em txtCpf
         String nome = txt_nome.getText(); //Armazena nome digitado em txtNome
+        
+        ServidorInter objeto1 = null;
+        
+        
         try {
-            cadastro_clientesDAO.deletarCli(cpf); //Execulta o metodo deletarCli o objeto gerenciarClientesDAO
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            objeto1.deletarCli(cpf);
+
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
         }
             JOptionPane.showMessageDialog(null, "Cliente " + nome + " excluido com sucesso!"); //Prompt de mensagem 
             limparCampos(); //Execulta o metodo para limpar os campos
-            btAlterar.setEnabled(false);
-            bt_excluir.setEnabled(false);
+            this.dispose();
+            AutentificacaoGUI autentificacaoGUI = new AutentificacaoGUI();
+                autentificacaoGUI.setVisible(true);
             
     }//GEN-LAST:event_bt_excluirActionPerformed
 

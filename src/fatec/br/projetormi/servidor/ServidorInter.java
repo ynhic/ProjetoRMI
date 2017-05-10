@@ -15,10 +15,15 @@ import java.rmi.RemoteException;
  */
 public interface ServidorInter extends Remote{
     
-    
+    //fazer o login atraves da tela autentificaçãoGUI
     public boolean validarSenha( String email, String senha ) throws RemoteException; 
-    
+    //faz o cadastro atraves da tela cadastro_clienteGUI
     public boolean cadastrarCli(Cadastro_clientesVO obj) throws RemoteException;
+    //Faz a busca de cadastro atraves da tela cadastroGI
+    public Cadastro_clientesVO buscarCli(Cadastro_clientesVO clienteVO) throws RemoteException;
+    //exclui um cadastro do BD
+    public void deletarCli(String cpf) throws RemoteException;
+    
     
     
 }
