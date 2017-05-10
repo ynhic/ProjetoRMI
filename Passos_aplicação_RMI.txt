@@ -1,0 +1,8 @@
+passoas para criar aplicação RMI usando Serialização
+
+1.Definição das Interface do objecto remoto
+2.Implementação da classe do objecto remoto
+3.Compilação do código fonte utilizando javac
+4.Criação do Stub e do Skeleton a partir das classes java anteriormente compiladas recorrendo ao rmic (RMI Compiler)
+5.Criação de Aplicação Servidora que instancia e regista o objecto remoto num Serviço de Registos
+6.Criação das Aplicações Clientes que consulta o Serviço de Registos e recolhe a interface de acesso à aplicação servidora.

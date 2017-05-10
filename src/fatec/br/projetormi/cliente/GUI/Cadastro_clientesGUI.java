@@ -1,6 +1,5 @@
 package fatec.br.projetormi.cliente.GUI;
 
-import fatec.br.projetormi.cliente.VO.Cadastro_clientesClienteVO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
 import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.conexao.Conexao;
