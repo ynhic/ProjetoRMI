@@ -5,11 +5,13 @@
  */
 package fatec.br.projetormi.servidor.VO;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ynhic
  */
-public class Cadastro_produtosVO {
+public class Cadastro_produtosVO implements Serializable{
     String nome_produto;
     String lance_produto;
     String descricao_produto; 

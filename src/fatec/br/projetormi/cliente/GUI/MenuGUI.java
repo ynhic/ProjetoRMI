@@ -41,10 +41,15 @@ public class MenuGUI extends javax.swing.JFrame {
 
         menu_opcoes.setText("Opçoes");
 
-        jMenuItem1.setText("opçao1");
+        jMenuItem1.setText("Cadastro de produtos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         menu_opcoes.add(jMenuItem1);
 
-        jMenuItem2.setText("opção2");
+        jMenuItem2.setText("Deslogar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -56,6 +61,11 @@ public class MenuGUI extends javax.swing.JFrame {
         menu_opcoes.getAccessibleContext().setAccessibleName("Opções");
 
         menu_sair.setLabel("Sair");
+        menu_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_sairActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(menu_sair);
 
         setJMenuBar(jMenuBar1);
@@ -75,8 +85,21 @@ public class MenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+       System.exit(0);
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        Cadastro_produtosGUI produtos = new Cadastro_produtosGUI();
+        produtos.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
+        
+        
+    }//GEN-LAST:event_menu_sairActionPerformed
 
     /**
      * @param args the command line arguments

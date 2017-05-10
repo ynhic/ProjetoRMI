@@ -5,16 +5,15 @@
  */
 package fatec.br.projetormi.cliente.GUI;
 
-import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
-import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
+import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import javax.swing.JOptionPane;
 
 /**
@@ -142,6 +141,11 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         });
 
         bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -211,22 +215,41 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         }
          
         
-         
+         ServidorInter objeto1 = null;
          Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();
+         boolean valida;
          
          //dados do produto
          produtoVO.setNome_produto(txt_nome_produto.getText());
          produtoVO.setLance_produto(txt_lance_produto.getText());
          produtoVO.setDescricao_produto(atxt_descricao_produto.getText());     
-          
-          
+         
+         
+        try {
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            valida = objeto1.cadastrar_produtos(produtoVO);
+
+            if (valida == true) {
+                JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
+                        "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
+        } 
+         
+         
+        /*  
         try {
             cadastro_produtosDAO.cadastrar_produtos(produtoVO);
             JOptionPane.showMessageDialog(null,"Dados enviados com sucesso","Inserção completa", JOptionPane.INFORMATION_MESSAGE);
             
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         limparCampos();       
         
     }//GEN-LAST:event_bt_cadastrarActionPerformed
@@ -240,6 +263,13 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+      MenuGUI menu = new MenuGUI();
+      menu.setVisible(true);
+      this.dispose();
+        
+    }//GEN-LAST:event_bt_voltarActionPerformed
 
     /**
      * @param args the command line arguments

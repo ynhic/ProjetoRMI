@@ -7,8 +7,10 @@ package fatec.br.projetormi.servidor;
 
 import fatec.br.projetormi.servidor.DAO.AutentificacaoDAO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
+import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.VO.AutentificacaoVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
+import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -158,7 +160,9 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
         
     }
     
-    
+    /**************************************************************
+    *Essa metodo faz a alteração nos dados cadastrados no BD      *
+    **************************************************************/
     public boolean editarCli(Cadastro_clientesVO obj) throws RemoteException{
         
         Conexao conexao = new Conexao();
@@ -178,6 +182,35 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
         }
         
         return valida;
+    }
+    
+    
+    
+    /**************************************************************
+    *Essa metodo faz a cadastro de dados sobre produtos no BD     *
+     * @param obj
+     * @throws java.rmi.RemoteException
+    **************************************************************/
+    @Override
+    public boolean cadastrar_produtos(Cadastro_produtosVO obj) throws RemoteException{
+        Conexao conexao = new Conexao();
+        conexao.setNomeBanco("leilaoapp");
+        conexao.setPorta(3306);
+        conexao.setSenha("");
+        conexao.setServidor("localhost");
+        conexao.setUsuario("root");
+        
+        Cadastro_produtosDAO cadastro_produtosDAO = new Cadastro_produtosDAO(conexao);
+        
+        
+        try{
+            cadastro_produtosDAO.cadastrar_produtos(obj);
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Erro " + ex);
+            return false;
+        }
+        
     }
     
 }
