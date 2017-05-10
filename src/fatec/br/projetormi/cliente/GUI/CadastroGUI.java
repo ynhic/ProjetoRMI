@@ -1,4 +1,4 @@
-package fatec.br.projetormi.servidor.GUI;
+package fatec.br.projetormi.cliente.GUI;
 
 import br.com.fatec.DAO.Cadastro_clientesDAO;
 import br.com.fatec.VO.Cadastro_clientesVO;
@@ -203,7 +203,7 @@ txt_endereco_pais.setText("");
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empresa", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Empresa", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         txt_social.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,7 +393,7 @@ txt_endereco_pais.setText("");
                 .addContainerGap())
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Localização", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Localização", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         txt_endereco_cep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,9 +525,7 @@ txt_endereco_pais.setText("");
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        jLabel19.getAccessibleContext().setAccessibleName("CEP");
-
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Dados3"), "Representante", 0, 0, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Dados3"), "Representante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         txt_sobrenome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

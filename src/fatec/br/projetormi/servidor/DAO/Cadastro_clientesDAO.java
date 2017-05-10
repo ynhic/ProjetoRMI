@@ -36,7 +36,7 @@ public class Cadastro_clientesDAO {
         this.conexao = conexao;
     }
     
-    public void cadastrarCli(Cadastro_clientesVO obj) throws SQLException 
+    public boolean cadastrarCli(Cadastro_clientesVO obj) throws SQLException 
     {
     /**
      * @param nome nome a ser inserido na coluna nomeCli da tabela "tabCliente"
@@ -78,6 +78,8 @@ public class Cadastro_clientesDAO {
         pst.executeUpdate(); //Execulta o comando SQL
         
         conexao.fechar(); //Fecha a conexao com o banco
+        return true;
+        
     }        
     
     public Cadastro_clientesVO buscarCli(Cadastro_clientesVO clienteVO) throws SQLException 

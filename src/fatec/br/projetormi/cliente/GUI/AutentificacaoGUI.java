@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fatec.br.projetormi.servidor.GUI;
+package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.AutentificacaoDAO;
 import fatec.br.projetormi.servidor.ServidorInter;

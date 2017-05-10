@@ -1,8 +1,15 @@
-package fatec.br.projetormi.servidor.GUI;
+package fatec.br.projetormi.cliente.GUI;
 
+import fatec.br.projetormi.cliente.VO.Cadastro_clientesClienteVO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
+import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -621,6 +628,10 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         
+        boolean valida;
+        ServidorInter objeto1 = null;
+        
+        
         if(txt_telefone_cliente.getText().isEmpty() ||
                 txt_nome.getText().isEmpty() ||
                 txt_rg.getText().isEmpty() ||
@@ -688,13 +699,32 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
           cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
           
           
-        try {
+        
+          try {
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            valida = objeto1.cadastrarCli(cadastro_clientesVO);
+
+            if(valida == true){
+            JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
+                        "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (MalformedURLException | RemoteException | NotBoundException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
+        }
+          
+          
+         /* 
+          try {
             cadastro_clientesDAO.cadastrarCli(cadastro_clientesVO);
             JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
                         "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } */
+         
         limparCampos();
                   
     }//GEN-LAST:event_btCadastrarActionPerformed

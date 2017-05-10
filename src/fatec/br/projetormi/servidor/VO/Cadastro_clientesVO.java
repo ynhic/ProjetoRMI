@@ -5,13 +5,14 @@
  */
 package fatec.br.projetormi.servidor.VO;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
  *
  * @author ynhic
  */
-public class Cadastro_clientesVO {
+public class Cadastro_clientesVO implements Serializable{
     private String nome;
     private String rg;
     private String cpf;

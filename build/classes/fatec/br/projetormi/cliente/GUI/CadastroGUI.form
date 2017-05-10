@@ -604,9 +604,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="CEP"/>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="CEP"/>
-              </AccessibilityProperties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel18">
               <Properties>

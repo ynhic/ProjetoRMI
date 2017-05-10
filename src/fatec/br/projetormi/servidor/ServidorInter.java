@@ -5,6 +5,7 @@
  */
 package fatec.br.projetormi.servidor;
 
+import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -16,5 +17,8 @@ public interface ServidorInter extends Remote{
     
     
     public boolean validarSenha( String email, String senha ) throws RemoteException; 
+    
+    public boolean cadastrarCli(Cadastro_clientesVO obj) throws RemoteException;
+    
     
 }
