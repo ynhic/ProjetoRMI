@@ -158,6 +158,28 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
         
     }
     
+    
+    public boolean editarCli(Cadastro_clientesVO obj) throws RemoteException{
+        
+        Conexao conexao = new Conexao();
+        conexao.setNomeBanco("leilaoapp");
+        conexao.setPorta(3306);
+        conexao.setSenha("");
+        conexao.setServidor("localhost");
+        conexao.setUsuario("root");
+        
+        Cadastro_clientesDAO cadastro_clientesDAO = new Cadastro_clientesDAO(conexao);
+        boolean valida=false;
+        
+        try{
+            valida = cadastro_clientesDAO.editarCli(obj);
+        } catch (SQLException ex) {
+            System.out.println("Erro " + ex);
+        }
+        
+        return valida;
+    }
+    
 }
     
     

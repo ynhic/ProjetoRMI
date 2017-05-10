@@ -152,11 +152,11 @@ public class Cadastro_clientesDAO {
                 + " email_cliente = ?, celular_cliente = ?, telefone_cliente = ?, senha_cliente = ? WHERE cpf_cliente = ?"; //Comando SQL para editarCli            
                 
         pst = conexao.con().prepareStatement(sql);
-        
+        if(obj!=null){
         //dados pessoais        
         pst.setString(1, obj.getNome());//Troca "?" do comando SQL
         pst.setString(2,obj.getRg());//Troca "?" do comando SQL
-        pst.setString(15,obj.getCpf());//Troca "?" do comando SQL
+        pst.setString(16,obj.getCpf());//Troca "?" do comando SQL
         pst.setDate(3,obj.getDatanasc());//Troca "?" do comando SQL
         pst.setString(4,obj.getSexo());//Troca "?" do comando SQL
         //endereco
@@ -171,11 +171,18 @@ public class Cadastro_clientesDAO {
         pst.setString(12,obj.getEmail_cliente());//Troca "?" do comando SQL
         pst.setString(13,obj.getCelular_cliente());//Troca "?" do comando SQL
         pst.setString(14,obj.getTelefone_cliente());//Troca "?" do comando SQL
-        pst.setString(16, obj.getSenha_cliente());
+        pst.setString(15, obj.getSenha_cliente());
  
         pst.execute(); //Executa o comando SQL
         conexao.fechar(); //Fecha a conexao com o banco 
+        System.out.println("gravou");
         return true;
+            
+        }else{
+            System.out.println("falhou");
+            return false;
+        }
+        
        
     }
     

@@ -24,6 +24,8 @@ public interface ServidorInter extends Remote{
     //exclui um cadastro do BD
     public void deletarCli(String cpf) throws RemoteException;
     
+    public boolean editarCli(Cadastro_clientesVO obj) throws RemoteException;
+    
     
     
 }

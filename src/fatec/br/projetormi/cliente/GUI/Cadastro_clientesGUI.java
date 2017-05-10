@@ -750,7 +750,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Digite campos obrigatórios", "Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+        ServidorInter objeto1 = null;//gera interface
         //cria um novo clienteVO
         Cadastro_clientesVO cadastro_clientesVO = new Cadastro_clientesVO();
         //seta as informaçoes do clienteVO
@@ -795,6 +795,33 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText());
         cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
 
+        boolean validar;
+        
+        try {
+            LocateRegistry.getRegistry("192.168.0.102");
+            objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
+            validar = objeto1.editarCli(cadastro_clientesVO);
+            if (validar == true) {
+                JOptionPane.showMessageDialog(rootPane, "Alteração OK",
+                        "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
+                btAlterar.setEnabled(false);
+                bt_excluir.setEnabled(false);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Erro na Alteração",
+                        "Mensagem ao Usuário", JOptionPane.ERROR_MESSAGE);
+                btAlterar.setEnabled(false);
+                bt_excluir.setEnabled(false);
+            }
+        } catch (RemoteException e) {
+            // TODO Auto-generated catch block
+            System.out.println("problema de conexão" + e);
+        } catch (NotBoundException | MalformedURLException ex) {
+            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        /*
         try {
             if (cadastro_clientesDAO.editarCli(cadastro_clientesVO) == true) {
                 JOptionPane.showMessageDialog(rootPane, "Alteração OK",
@@ -809,7 +836,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         limparCampos();
 
     }//GEN-LAST:event_btAlterarActionPerformed
