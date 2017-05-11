@@ -32,6 +32,7 @@ public class MenuGUI extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_opcoes = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         menu_sair = new javax.swing.JMenu();
 
@@ -48,6 +49,14 @@ public class MenuGUI extends javax.swing.JFrame {
             }
         });
         menu_opcoes.add(jMenuItem1);
+
+        jMenuItem3.setText("Sala de leilão");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        menu_opcoes.add(jMenuItem3);
 
         jMenuItem2.setText("Deslogar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +110,13 @@ public class MenuGUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_sairActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        LeilaoGUI leilaoGUI = new LeilaoGUI();
+        leilaoGUI.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -141,6 +157,7 @@ public class MenuGUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenu menu_opcoes;
     private javax.swing.JMenu menu_sair;
     // End of variables declaration//GEN-END:variables
