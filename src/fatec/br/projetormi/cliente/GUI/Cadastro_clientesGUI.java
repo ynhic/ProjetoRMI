@@ -703,7 +703,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
                         "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
-                AutentificacaoGUI autentificacaoGUI = new AutentificacaoGUI();
+                AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI();
                 autentificacaoGUI.setVisible(true);
             }
 
@@ -1026,13 +1026,13 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Cliente " + nome + " excluido com sucesso!"); //Prompt de mensagem 
             limparCampos(); //Execulta o metodo para limpar os campos
             this.dispose();
-            AutentificacaoGUI autentificacaoGUI = new AutentificacaoGUI();
+            AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI();
                 autentificacaoGUI.setVisible(true);
             
     }//GEN-LAST:event_bt_excluirActionPerformed
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        AutentificacaoGUI autentificacaoGUI = new AutentificacaoGUI(); //Cria o objeto menu
+        AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI(); //Cria o objeto menu
         autentificacaoGUI.setVisible(true); //Exibe objeot menu
         this.dispose(); //Fecha o form GerenciarClientes
         

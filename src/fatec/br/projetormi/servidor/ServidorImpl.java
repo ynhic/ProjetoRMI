@@ -5,10 +5,10 @@
  */
 package fatec.br.projetormi.servidor;
 
-import fatec.br.projetormi.servidor.DAO.AutentificacaoDAO;
+import fatec.br.projetormi.servidor.DAO.AutentificacaoClienteDAO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
-import fatec.br.projetormi.servidor.VO.AutentificacaoVO;
+import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
@@ -51,8 +51,8 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
         boolean valida = false;
         
         //cria obj AutentificacaoVO e AutentificacaoDAO
-        AutentificacaoVO autentificacaoVO;
-        AutentificacaoDAO autentificacaoDAO = new AutentificacaoDAO(conexao);
+        AutentificacaoClienteVO autentificacaoVO;
+        AutentificacaoClienteDAO autentificacaoDAO = new AutentificacaoClienteDAO(conexao);
         
 
         try {
@@ -162,7 +162,11 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
     
     /**************************************************************
     *Essa metodo faz a alteração nos dados cadastrados no BD      *
+     * @param obj
+     * @return 
+     * @throws java.rmi.RemoteException
     **************************************************************/
+    @Override
     public boolean editarCli(Cadastro_clientesVO obj) throws RemoteException{
         
         Conexao conexao = new Conexao();
@@ -189,6 +193,7 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
     /**************************************************************
     *Essa metodo faz a cadastro de dados sobre produtos no BD     *
      * @param obj
+     * @return 
      * @throws java.rmi.RemoteException
     **************************************************************/
     @Override

@@ -7,7 +7,6 @@ package fatec.br.projetormi.servidor;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 /**
@@ -15,10 +14,10 @@ import java.rmi.registry.LocateRegistry;
  * @author ynhic
  */
 public class Servidor {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         System.out.println("Server ativo...");
         new Servidor();
-    }
+    }*/
     
     public Servidor(){
         

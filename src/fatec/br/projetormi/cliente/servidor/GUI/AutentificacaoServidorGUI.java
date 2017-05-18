@@ -3,18 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fatec.br.projetormi.cliente.GUI;
+package fatec.br.projetormi.cliente.servidor.GUI;
 
-import fatec.br.projetormi.servidor.DAO.AutentificacaoDAO;
-import fatec.br.projetormi.servidor.ServidorInter;
-import fatec.br.projetormi.servidor.VO.AutentificacaoVO;
+import fatec.br.projetormi.cliente.GUI.*;
+import fatec.br.projetormi.servidor.DAO.AutentificacaoClienteDAO;
+import fatec.br.projetormi.servidor.DAO.AutentificacaoFuncionarioDAO;
+import fatec.br.projetormi.servidor.Servidor;
+import fatec.br.projetormi.servidor.VO.AutentificacaoFuncionarioVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
-import java.net.MalformedURLException;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
 import java.sql.SQLException;
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,16 +21,16 @@ import javax.swing.JOptionPane;
  *
  * @author ynhic
  */
-public class AutentificacaoGUI extends javax.swing.JFrame {
+public class AutentificacaoServidorGUI extends javax.swing.JFrame {
     //------------ Variaveis Globais ------------
     
     private Conexao conexao = new Conexao(); //Cria um objeto para a conexao com o banco de dados
-    private AutentificacaoDAO autentificacaoDAO =  new AutentificacaoDAO(conexao); //Cria a DAO para a troca de dados com o banco
+    private AutentificacaoClienteDAO autentificacaoDAO =  new AutentificacaoClienteDAO(conexao); //Cria a DAO para a troca de dados com o banco
     
     /**
      * Creates new form AutentificacaoGUI
      */
-    public AutentificacaoGUI() {
+    public AutentificacaoServidorGUI() {
         
         initComponents();
         this.setLocationRelativeTo(null);
@@ -169,20 +167,52 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
         
+        if(txt_usuario.getText().isEmpty() ||
+                txt_senha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite o codigo para realizar a pesquisa","Alerta", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
         String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
         String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha
         boolean valida;
-        ServidorInter objeto1 = null;
+       // ServidorInter objeto1 = null;
+       
+       AutentificacaoFuncionarioVO funcionarioServidorVO = new AutentificacaoFuncionarioVO();
+       AutentificacaoFuncionarioDAO autentificacaoFuncionarioDAO = new AutentificacaoFuncionarioDAO(conexao);
+       
+       
+       try{
+           funcionarioServidorVO = autentificacaoFuncionarioDAO.validarSenha(email, senha);
+           
+           if(funcionarioServidorVO==null){
+               JOptionPane.showMessageDialog(rootPane, "Dados nao encontrados!",
+                    "Mensagem ao Usuário", 
+                    JOptionPane.INFORMATION_MESSAGE);
+           } else{
+               //achou
+               JOptionPane.showMessageDialog(null, "login efetuado com sucesso","Alerta", JOptionPane.INFORMATION_MESSAGE);
+                new MenuServidorGUI().setVisible(true);
+                this.setVisible(false);
+                System.out.println("Server ativo...");
+                new Servidor();
+           }
+      
+           
+       } catch (SQLException ex) {
+            Logger.getLogger(AutentificacaoServidorGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        try {
+       /* try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
             valida = objeto1.validarSenha(email,senha );
 
-            if (valida == true) {
+            if (valida == true) {         
                 MenuGUI menu = new MenuGUI();
                 menu.setVisible(true);
                 this.dispose();
+                
             } else {
                 if (email.equals("") && senha.equals("")) {
                     JOptionPane.showMessageDialog(null, "Digite email e senha para entrar", "Atenção", JOptionPane.WARNING_MESSAGE);
@@ -198,7 +228,7 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
         
         
         
-       /* String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
+       String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
         String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha 
         AutentificacaoVO autentificacaoVO = new AutentificacaoVO();
                
@@ -258,20 +288,23 @@ public class AutentificacaoGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AutentificacaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutentificacaoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AutentificacaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutentificacaoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AutentificacaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutentificacaoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AutentificacaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AutentificacaoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AutentificacaoGUI().setVisible(true);
+                new AutentificacaoServidorGUI().setVisible(true);
             }
         });
     }

@@ -265,7 +265,7 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-      MenuGUI menu = new MenuGUI();
+      MenuClienteGUI menu = new MenuClienteGUI();
       menu.setVisible(true);
       this.dispose();
         

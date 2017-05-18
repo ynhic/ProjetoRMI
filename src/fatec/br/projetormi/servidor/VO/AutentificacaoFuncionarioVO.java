@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package fatec.br.projetormi.servidor.VO;
 
 /**
- *
- * @author ynhic
+ * 
+ * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class AutentificacaoVO {
+public class AutentificacaoFuncionarioVO {
     private String senha;
     private String email;
 
@@ -28,5 +29,5 @@ public class AutentificacaoVO {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }

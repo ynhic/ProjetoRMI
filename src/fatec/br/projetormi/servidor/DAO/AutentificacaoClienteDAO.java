@@ -5,7 +5,7 @@
  */
 package fatec.br.projetormi.servidor.DAO;
 
-import fatec.br.projetormi.servidor.VO.AutentificacaoVO;
+import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author ynhic
  */
-public class AutentificacaoDAO {
+public class AutentificacaoClienteDAO {
       //------------ Atributos ------------   
     
     private Conexao conexao;
@@ -25,9 +25,9 @@ public class AutentificacaoDAO {
     private ResultSet rs;
     private Statement st;
     private String sql = null;
-    private AutentificacaoVO autentificacaoVO = null;
+    private AutentificacaoClienteVO autentificacaoVO = null;
     
-    public AutentificacaoDAO(Conexao conexao) 
+    public AutentificacaoClienteDAO(Conexao conexao) 
     {
     /**
      * @param conexao informacoes sobre o banco
@@ -41,7 +41,7 @@ public class AutentificacaoDAO {
     
     
     
-    public AutentificacaoVO validarSenha(String email, String senha) throws SQLException{
+    public AutentificacaoClienteVO validarSenha(String email, String senha) throws SQLException{
         /**
      * @param cpf sera procurado na coluna de cpfCli na tabela "tabCliente"
      * 
@@ -62,7 +62,7 @@ public class AutentificacaoDAO {
 
         if (rs.next()) //Quando encontrado...
         {
-            autentificacaoVO = new AutentificacaoVO(); //Instancia um novo objeto ClienteVO 
+            autentificacaoVO = new AutentificacaoClienteVO(); //Instancia um novo objeto ClienteVO 
             //dados pessoais
             autentificacaoVO.setEmail(rs.getString("email_cliente")); //Armazena o conteudo da coluna "nome_cliente" na variavel nome do objeto clienteVO
             autentificacaoVO.setSenha(rs.getString("senha_cliente"));
