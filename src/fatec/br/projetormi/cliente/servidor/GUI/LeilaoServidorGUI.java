@@ -5,8 +5,6 @@
  */
 package fatec.br.projetormi.cliente.servidor.GUI;
 
-import fatec.br.projetormi.cliente.GUI.*;
-
 /**
  *
  * @author ynhic

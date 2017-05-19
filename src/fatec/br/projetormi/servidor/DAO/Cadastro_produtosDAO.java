@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -62,7 +64,33 @@ public class Cadastro_produtosDAO {
         pst.executeUpdate(); //Execulta o comando SQL
         
         conexao.fechar(); //Fecha a conexao com o banco
-    } 
+    }
+    
+    public List<Cadastro_produtosVO> listar() throws SQLException{
+        /**
+         * Este metodo busca todos os produtos no banco de dados e os armazena em um List
+         */
+        
+        List <Cadastro_produtosVO> lista_produto = new Vector<>();
+        
+        conexao.abrir();//abre conexao com o banco
+        sql = "SELECT * FROM TABPRODUTO";//comando sql
+        
+        st = conexao.con().createStatement();
+        rs = st.executeQuery(sql);//executa comando sql
+        
+        while (rs.next()) {//quando encontrado
+            Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();//instancia um novo Cadastro_produto
+            produtoVO.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produtoVO.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+            produtoVO.setLance_produto(rs.getString("LANCE_PRODUTO"));
+            produtoVO.setCod_produto(rs.getString("IDPRODUTO"));
+            
+            lista_produto.add(produtoVO);
+        }
+        conexao.fechar();
+        return lista_produto;//retorna o List
+    }
     
     
     

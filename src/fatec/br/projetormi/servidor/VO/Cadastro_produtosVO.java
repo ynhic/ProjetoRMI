@@ -6,6 +6,7 @@
 package fatec.br.projetormi.servidor.VO;
 
 import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -15,6 +16,15 @@ public class Cadastro_produtosVO implements Serializable{
     String nome_produto;
     String lance_produto;
     String descricao_produto; 
+    String Cod_produto;
+
+    public String getCod_produto() {
+        return Cod_produto;
+    }
+
+    public void setCod_produto(String Cod_produto) {
+        this.Cod_produto = Cod_produto;
+    }
 
     public String getNome_produto() {
         return nome_produto;
@@ -38,5 +48,15 @@ public class Cadastro_produtosVO implements Serializable{
 
     public void setDescricao_produto(String descricao_produto) {
         this.descricao_produto = descricao_produto;
+    }
+    
+    public Vector toVector() 
+    {
+        Vector retorno = new Vector(4);
+        retorno.add(Cod_produto);
+        retorno.add(nome_produto); 
+        retorno.add(descricao_produto);
+        retorno.add(lance_produto);
+        return retorno;
     }
 }
