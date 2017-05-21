@@ -160,7 +160,7 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_cadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastroActionPerformed
-        Cadastro_clientesGUI cadastro_clienteGUI = new Cadastro_clientesGUI();
+        CadastroClientesClienteGUI cadastro_clienteGUI = new CadastroClientesClienteGUI();
         cadastro_clienteGUI.setVisible(true);
         this.dispose();
         

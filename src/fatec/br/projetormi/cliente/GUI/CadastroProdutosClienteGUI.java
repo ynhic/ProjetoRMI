@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  *
  * @author ynhic
  */
-public class Cadastro_produtosGUI extends javax.swing.JFrame {
+public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Cadastro_produtosGUI
      */
-    public Cadastro_produtosGUI() {
+    public CadastroProdutosClienteGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -119,9 +119,8 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
                     .addComponent(txt_lance_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         bt_cadastrar.setText("Cadastrar");
@@ -220,9 +219,10 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
          boolean valida;
          
          //dados do produto
-         produtoVO.setNome_produto(txt_nome_produto.getText());
-         produtoVO.setLance_produto(txt_lance_produto.getText());
-         produtoVO.setDescricao_produto(atxt_descricao_produto.getText());     
+         produtoVO.setNome_produto(txt_nome_produto.getText().toUpperCase());
+         produtoVO.setLance_produto(txt_lance_produto.getText().toUpperCase());
+         produtoVO.setDescricao_produto(atxt_descricao_produto.getText().toUpperCase());
+         produtoVO.setStatus("NAT");
          
          
         try {
@@ -288,20 +288,23 @@ public class Cadastro_produtosGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_produtosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutosClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_produtosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutosClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_produtosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutosClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_produtosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutosClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro_produtosGUI().setVisible(true);
+                new CadastroProdutosClienteGUI().setVisible(true);
             }
         });
     }

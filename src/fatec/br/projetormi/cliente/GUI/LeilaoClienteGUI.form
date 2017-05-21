@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -63,10 +66,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="jLabel1" max="32767" attributes="0"/>
-                          <EmptySpace min="207" pref="207" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="br_selecionar" linkSize="4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="bt_lance" linkSize="4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="bt_voltar" linkSize="4" min="-2" max="-2" attributes="0"/>
@@ -86,6 +91,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bt_voltar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bt_lance" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="br_selecionar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -243,7 +249,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="jTextArea1">
+                <Component class="javax.swing.JTextArea" name="atxt_descricao">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
@@ -268,11 +274,22 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Voltar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_voltarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="bt_lance">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dar lance"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="br_selecionar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selecionar Produto"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="br_selecionarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

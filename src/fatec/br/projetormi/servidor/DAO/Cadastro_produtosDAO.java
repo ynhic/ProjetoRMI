@@ -53,20 +53,21 @@ public class Cadastro_produtosDAO {
      *Este metodo cadastra na tabela "tabProdutos" do banco de dados "LeilaoRMI" os dados passados por paramentro    
      */     
         conexao.abrir(); //Abre a conexao com o  banco
-        sql = "Insert into tabProduto (nome_produto, lance_produto, descricao_produto) values (?, ?, ?)"; //Comando SQL para cadastro   
+        sql = "Insert into tabProduto (nome_produto, lance_produto, descricao_produto, status) values (?, ?, ?, ?)"; //Comando SQL para cadastro   
         
         pst = conexao.con().prepareStatement(sql);       
         //dados do produto      
         pst.setString(1, obj.getNome_produto());
         pst.setString(2, obj.getLance_produto());
         pst.setString(3, obj.getDescricao_produto()); 
+        pst.setString(4, obj.getStatus()); 
         
         pst.executeUpdate(); //Execulta o comando SQL
         
         conexao.fechar(); //Fecha a conexao com o banco
     }
     
-    public List<Cadastro_produtosVO> listar() throws SQLException{
+    public List<Cadastro_produtosVO> listar(String status) throws SQLException{
         /**
          * Este metodo busca todos os produtos no banco de dados e os armazena em um List
          */
@@ -74,10 +75,13 @@ public class Cadastro_produtosDAO {
         List <Cadastro_produtosVO> lista_produto = new Vector<>();
         
         conexao.abrir();//abre conexao com o banco
-        sql = "SELECT * FROM TABPRODUTO";//comando sql
+        sql = "SELECT * FROM TABPRODUTO WHERE STATUS = ?";//comando sql
         
-        st = conexao.con().createStatement();
-        rs = st.executeQuery(sql);//executa comando sql
+        pst = conexao.con().prepareStatement(sql);       
+        //dados do produto      
+        pst.setString(1, status);
+        
+        rs = pst.executeQuery();//executa comando sql
         
         while (rs.next()) {//quando encontrado
             Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();//instancia um novo Cadastro_produto

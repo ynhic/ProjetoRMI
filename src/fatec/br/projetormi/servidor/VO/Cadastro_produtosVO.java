@@ -13,10 +13,19 @@ import java.util.Vector;
  * @author ynhic
  */
 public class Cadastro_produtosVO implements Serializable{
-    String nome_produto;
-    String lance_produto;
-    String descricao_produto; 
-    String Cod_produto;
+    private String nome_produto;
+    private String lance_produto;
+    private String descricao_produto; 
+    private String Cod_produto;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getCod_produto() {
         return Cod_produto;

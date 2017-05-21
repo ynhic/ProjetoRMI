@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  *
  * @author henrique
  */
-public class Cadastro_clientesGUI extends javax.swing.JFrame {
+public class CadastroClientesClienteGUI extends javax.swing.JFrame {
     
     private String sexo;
     Conexao conexao = new Conexao();
@@ -59,7 +59,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
     /**
      * Creates new form Cadastro
      */
-    public Cadastro_clientesGUI() {
+    public CadastroClientesClienteGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -668,31 +668,31 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         java.sql.Date dataNascSql;
         dataNascSql = new java.sql.Date(dataUtil.getTime());
 
         //dados pessoais
-        cadastro_clientesVO.setNome(txt_nome.getText());
-        cadastro_clientesVO.setRg(txt_rg.getText());
-        cadastro_clientesVO.setCpf(txt_cpf.getText());
-        cadastro_clientesVO.setSexo(sexo);
+        cadastro_clientesVO.setNome(txt_nome.getText().toUpperCase());
+        cadastro_clientesVO.setRg(txt_rg.getText().toUpperCase());
+        cadastro_clientesVO.setCpf(txt_cpf.getText().toUpperCase());
+        cadastro_clientesVO.setSexo(sexo.toUpperCase());
         cadastro_clientesVO.setDatanasc(dataNascSql);
         //endereço
-        cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText());
-        cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText());
-        cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText());
-        cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText());
-        cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText());
-        cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText());
-        cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText());
+        cadastro_clientesVO.setEndereco_cliente(txt_endereco_cliente.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_numero(txt_endereco_cliente_numero.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_complemento(txt_endereco_cliente_complemento.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_cep(txt_endereco_cliente_cep.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_pais(txt_endereco_cliente_pais.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_uf(txt_endereco_cliente_uf.getText().toUpperCase());
+        cadastro_clientesVO.setEndereco_cliente_cidade(txt_endereco_cliente_cidade.getText().toUpperCase());
         //contatos
-        cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText());
-        cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText());
-        cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText());
-        cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
+        cadastro_clientesVO.setEmail_cliente(txt_email_cliente.getText().toUpperCase());
+        cadastro_clientesVO.setTelefone_cliente(txt_telefone_cliente.getText().toUpperCase());
+        cadastro_clientesVO.setCelular_cliente(txt_celular_cliente.getText().toUpperCase());
+        cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText().toUpperCase());
 
         try {
             LocateRegistry.getRegistry("192.168.0.102");
@@ -769,7 +769,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         try {
             dataUtil = sdf.parse(strData);
         } catch (ParseException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         java.sql.Date dataNascSql;
@@ -816,7 +816,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         } catch (NotBoundException | MalformedURLException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -1056,14 +1056,22 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1076,7 +1084,7 @@ public class Cadastro_clientesGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastro_clientesGUI().setVisible(true);
+                new CadastroClientesClienteGUI().setVisible(true);
             }
         });
     }

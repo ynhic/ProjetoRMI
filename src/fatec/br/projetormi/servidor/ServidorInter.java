@@ -9,6 +9,7 @@ import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.List;
 
 /**
  *
@@ -28,6 +29,8 @@ public interface ServidorInter extends Remote{
     public boolean editarCli(Cadastro_clientesVO obj) throws RemoteException;
     //cadastra produtos atraves da tela produtos
     public boolean cadastrar_produtos(Cadastro_produtosVO obj) throws RemoteException;
+    //busca os dados no BD para preencher a table produtos_cliente
+    public List<Cadastro_produtosVO> listar(String status) throws RemoteException;
     
     
     

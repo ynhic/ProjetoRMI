@@ -20,25 +20,25 @@ import javax.swing.table.TableColumnModel;
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class ListaProdutosGUI extends javax.swing.JFrame {
-    
+public class ListaProdutosServidorGUI extends javax.swing.JFrame {
+    //atributos
     Conexao conexao = new Conexao();
     Cadastro_produtosDAO cadastro_ProdutosDAO = new Cadastro_produtosDAO(conexao);
     Cadastro_produtosVO cadastro_produtosVO = new Cadastro_produtosVO();
+    String status;
+    
     
     private DefaultTableModel tableModelProduto;
     
     /**
      * Creates new form ListaProdutosGUI
      */
-    public ListaProdutosGUI() {
+    public ListaProdutosServidorGUI() {
         initComponents();
     }
     //metodos
     
-    public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
-    }
+    
     private void preencherTable(){
         Vector colunas = new Vector(4);
         colunas.add("Cod");
@@ -46,10 +46,10 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
         colunas.add("Descrição");
         colunas.add("Lance inicial");
         
-        
+        status = "NAT";
         
         try{
-            Vector<Cadastro_produtosVO> dado = (Vector)cadastro_ProdutosDAO.listar();
+            Vector<Cadastro_produtosVO> dado = (Vector)cadastro_ProdutosDAO.listar(status);
             
             tableModelProduto = new DefaultTableModel();
             tableModelProduto.setColumnIdentifiers(colunas);
@@ -86,6 +86,7 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
         bt_voltar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_produtos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Produtos");
@@ -98,6 +99,11 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista produtos"));
 
         bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
 
         tb_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,8 +116,8 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tb_produtos.setCellSelectionEnabled(true);
         tb_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tb_produtos.setEnabled(false);
         tb_produtos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tb_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -119,6 +125,10 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tb_produtos);
+
+        jLabel1.setText("Produtos para leiloar");
+        jLabel1.setBorder(null);
+        jLabel1.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,15 +138,21 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(bt_voltar)
-                .addGap(117, 117, 117))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,7 +168,7 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -186,7 +202,23 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
 
         //String cpf = suaTable.getValueAt(linhaSelecionada, 0).toString();
         System.out.println("clicou");
+        LeilaoServidorGUI leilaoGUI = new LeilaoServidorGUI();
+        
+        leilaoGUI.setVisible(true);
+        leilaoGUI.cod_produto = (String) tb_produtos.getValueAt(selecionada, 0);
+        leilaoGUI.nome_produto = (String) tb_produtos.getValueAt(selecionada, 1);
+        leilaoGUI.descricao_prodto = (String) tb_produtos.getValueAt(selecionada, 2);
+        leilaoGUI.lance_inicial = (String) tb_produtos.getValueAt(selecionada, 3);
+        
+        this.dispose();
     }//GEN-LAST:event_tb_produtosMouseClicked
+
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        LeilaoServidorGUI leilaoGUI = new LeilaoServidorGUI();       
+        leilaoGUI.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_bt_voltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,26 +237,28 @@ public class ListaProdutosGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaProdutosGUI().setVisible(true);
+                new ListaProdutosServidorGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_voltar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tb_produtos;

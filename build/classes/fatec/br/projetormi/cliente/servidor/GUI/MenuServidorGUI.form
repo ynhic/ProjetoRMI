@@ -47,14 +47,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="menu_sair">
-          <Properties>
-            <Property name="label" type="java.lang.String" value="Sair"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menu_sairActionPerformed"/>
-          </Events>
-        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -116,7 +108,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="bt_sair" max="32767" attributes="0"/>
                       <Component id="bt_cadastrarLeilao" max="32767" attributes="0"/>
-                      <Component id="bt_verProdutos" alignment="0" pref="348" max="32767" attributes="0"/>
+                      <Component id="bt_verProdutosAtivo" alignment="0" pref="348" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -126,7 +118,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="bt_verProdutos" min="-2" max="-2" attributes="0"/>
+                  <Component id="bt_verProdutosAtivo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bt_cadastrarLeilao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -137,9 +129,9 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="bt_verProdutos">
+        <Component class="javax.swing.JButton" name="bt_verProdutosAtivo">
           <Properties>
-            <Property name="text" type="java.lang.String" value=" Ver Produtos para Leil&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value=" Ver Leilao Ativo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bt_cadastrarLeilao">
@@ -154,6 +146,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Deslogar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_sairActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

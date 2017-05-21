@@ -9,14 +9,20 @@ package fatec.br.projetormi.cliente.GUI;
  *
  * @author ynhic
  */
-public class LeilaoGUI extends javax.swing.JFrame {
+public class LeilaoClienteGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form LeilaoGUI
      */
-    public LeilaoGUI() {
+    public LeilaoClienteGUI() {
         initComponents();
     }
+    
+    //atributos
+    String cod_produto;
+    String nome_produto;
+    String descricao_prodto;
+    String lance_inicial;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,13 +44,19 @@ public class LeilaoGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txt_lanceAtual_produto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        atxt_descricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         txt_tempoRestante_produto = new javax.swing.JTextField();
         bt_voltar = new javax.swing.JButton();
         bt_lance = new javax.swing.JButton();
+        br_selecionar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Leilão"));
 
@@ -65,10 +77,10 @@ public class LeilaoGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Lance atual");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        atxt_descricao.setEditable(false);
+        atxt_descricao.setColumns(20);
+        atxt_descricao.setRows(5);
+        jScrollPane1.setViewportView(atxt_descricao);
 
         jLabel6.setText("Tempo restante");
 
@@ -147,8 +159,20 @@ public class LeilaoGUI extends javax.swing.JFrame {
         );
 
         bt_voltar.setText("Voltar");
+        bt_voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_voltarActionPerformed(evt);
+            }
+        });
 
         bt_lance.setText("Dar lance");
+
+        br_selecionar.setText("Selecionar Produto");
+        br_selecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                br_selecionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,16 +187,18 @@ public class LeilaoGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(207, 207, 207))
+                        .addGap(202, 202, 202))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(br_selecionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_lance)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bt_voltar)))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_lance, bt_voltar});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {br_selecionar, bt_lance, bt_voltar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +209,8 @@ public class LeilaoGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_voltar)
-                    .addComponent(bt_lance))
+                    .addComponent(bt_lance)
+                    .addComponent(br_selecionar))
                 .addContainerGap())
         );
 
@@ -208,6 +235,27 @@ public class LeilaoGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if (!"".equals(nome_produto) || !"".equals(lance_inicial) || !"".equals(descricao_prodto)) {
+            txt_nome_produto.setText(nome_produto);
+            txt_lanceInicial_produto.setText(lance_inicial);
+            atxt_descricao.setText(descricao_prodto);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
+        MenuClienteGUI menu = new MenuClienteGUI();
+        menu.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_bt_voltarActionPerformed
+
+    private void br_selecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_br_selecionarActionPerformed
+        new ListaProdutosClienteGUI().setVisible(true);
+        this.setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_br_selecionarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,25 +273,30 @@ public class LeilaoGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LeilaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LeilaoClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LeilaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LeilaoClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LeilaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LeilaoClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LeilaoGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LeilaoClienteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LeilaoGUI().setVisible(true);
+                new LeilaoClienteGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea atxt_descricao;
+    private javax.swing.JToggleButton br_selecionar;
     private javax.swing.JButton bt_lance;
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
@@ -255,7 +308,6 @@ public class LeilaoGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_lanceAtual_produto;
     private javax.swing.JTextField txt_lanceInicial_produto;
     private javax.swing.JTextField txt_nome_produto;

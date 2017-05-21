@@ -5,8 +5,8 @@
  */
 package fatec.br.projetormi.cliente.servidor.GUI;
 
-import fatec.br.projetormi.cliente.GUI.Cadastro_produtosGUI;
-import fatec.br.projetormi.cliente.GUI.LeilaoGUI;
+import fatec.br.projetormi.cliente.GUI.CadastroProdutosClienteGUI;
+import fatec.br.projetormi.cliente.GUI.LeilaoClienteGUI;
 
 /**
  *
@@ -33,7 +33,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
 
         jMenu3 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
-        bt_verProdutos = new javax.swing.JButton();
+        bt_verProdutosAtivo = new javax.swing.JButton();
         bt_cadastrarLeilao = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -41,7 +41,6 @@ public class MenuServidorGUI extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        menu_sair = new javax.swing.JMenu();
 
         jMenu3.setText("jMenu3");
 
@@ -49,7 +48,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Funções"));
 
-        bt_verProdutos.setText(" Ver Produtos para Leilão");
+        bt_verProdutosAtivo.setText(" Ver Leilao Ativo");
 
         bt_cadastrarLeilao.setText("Cadastrar Leilão");
         bt_cadastrarLeilao.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +58,11 @@ public class MenuServidorGUI extends javax.swing.JFrame {
         });
 
         bt_sair.setText("Deslogar");
+        bt_sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_sairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,14 +73,14 @@ public class MenuServidorGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_cadastrarLeilao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_verProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(bt_verProdutosAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_verProdutos)
+                .addComponent(bt_verProdutosAtivo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bt_cadastrarLeilao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,14 +117,6 @@ public class MenuServidorGUI extends javax.swing.JFrame {
         jMenuBar1.add(menu_opcoes);
         menu_opcoes.getAccessibleContext().setAccessibleName("Opções");
 
-        menu_sair.setLabel("Sair");
-        menu_sair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_sairActionPerformed(evt);
-            }
-        });
-        jMenuBar1.add(menu_sair);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,30 +145,29 @@ public class MenuServidorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Cadastro_produtosGUI produtos = new Cadastro_produtosGUI();
+        CadastroProdutosClienteGUI produtos = new CadastroProdutosClienteGUI();
         produtos.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void menu_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_sairActionPerformed
-        
-        
-    }//GEN-LAST:event_menu_sairActionPerformed
-
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        LeilaoGUI leilaoGUI = new LeilaoGUI();
+        LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();
         leilaoGUI.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void bt_cadastrarLeilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastrarLeilaoActionPerformed
-        LeilaoServidorGUI leilao = new LeilaoServidorGUI();
+        LeilaoClienteGUI leilao = new LeilaoClienteGUI();
         leilao.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_bt_cadastrarLeilaoActionPerformed
+
+    private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_bt_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,7 +210,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cadastrarLeilao;
     private javax.swing.JButton bt_sair;
-    private javax.swing.JButton bt_verProdutos;
+    private javax.swing.JButton bt_verProdutosAtivo;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -223,6 +218,5 @@ public class MenuServidorGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menu_opcoes;
-    private javax.swing.JMenu menu_sair;
     // End of variables declaration//GEN-END:variables
 }
