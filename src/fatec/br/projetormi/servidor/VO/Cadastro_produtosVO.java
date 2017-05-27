@@ -10,14 +10,42 @@ import java.util.Vector;
 
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
-public class Cadastro_produtosVO implements Serializable{
+public class Cadastro_produtosVO implements Serializable {
+
     private String nome_produto;
     private String lance_produto;
-    private String descricao_produto; 
+    private String lance_atual;
+    private String descricao_produto;
     private String Cod_produto;
     private String status;
+    private String emailVencedor;
+    private String senhaLeilao;
+
+    public String getSenhaLeilao() {
+        return senhaLeilao;
+    }
+
+    public void setSenhaLeilao(String senhaLeilao) {
+        this.senhaLeilao = senhaLeilao;
+    }
+
+    public String getEmailVencedor() {
+        return emailVencedor;
+    }
+
+    public void setEmailVencedor(String emailVencedor) {
+        this.emailVencedor = emailVencedor;
+    }
+
+    public String getLance_atual() {
+        return lance_atual;
+    }
+
+    public void setLance_atual(String lance_atual) {
+        this.lance_atual = lance_atual;
+    }
 
     public String getStatus() {
         return status;
@@ -58,14 +86,15 @@ public class Cadastro_produtosVO implements Serializable{
     public void setDescricao_produto(String descricao_produto) {
         this.descricao_produto = descricao_produto;
     }
-    
-    public Vector toVector() 
-    {
+
+    public Vector toVector() {
         Vector retorno = new Vector(4);
         retorno.add(Cod_produto);
-        retorno.add(nome_produto); 
+        retorno.add(nome_produto);
         retorno.add(descricao_produto);
         retorno.add(lance_produto);
+        retorno.add(lance_atual);
+        retorno.add(emailVencedor);       
         return retorno;
     }
 }

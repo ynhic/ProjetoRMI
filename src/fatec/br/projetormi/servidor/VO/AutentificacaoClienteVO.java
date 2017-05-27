@@ -7,9 +7,10 @@ package fatec.br.projetormi.servidor.VO;
 
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class AutentificacaoClienteVO {
+
     private String senha;
     private String email;
 
@@ -28,5 +29,5 @@ public class AutentificacaoClienteVO {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
 }

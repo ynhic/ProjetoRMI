@@ -5,9 +5,18 @@
  */
 package fatec.br.projetormi.cliente.servidor.GUI;
 
+import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
+import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
+import fatec.br.projetormi.servidor.auxiliar.CodeMaker;
+import fatec.br.projetormi.servidor.conexao.Conexao;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class LeilaoServidorGUI extends javax.swing.JFrame {
 
@@ -17,10 +26,14 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
     public LeilaoServidorGUI() {
         initComponents();
     }
+
+    Conexao conexao = new Conexao();
+    Cadastro_produtosDAO produtoDAO = new Cadastro_produtosDAO(conexao);
+    Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();
     
+
     //atribulos
     public String nome_produto, lance_inicial, descricao_prodto, cod_produto;
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,15 +52,12 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
         txt_nome_produto = new javax.swing.JTextField();
         txt_lanceInicial_produto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        lb_lance_atual = new javax.swing.JLabel();
-        txt_lanceAtual_produto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         atxt_descricao = new javax.swing.JTextArea();
-        lb_tempo = new javax.swing.JLabel();
-        txt_tempoRestante_produto = new javax.swing.JTextField();
         bt_voltar = new javax.swing.JButton();
-        bt_iniciar = new javax.swing.JButton();
+        bt_iniciarLeilao = new javax.swing.JButton();
         bt_SelecionarProduto = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Leilão");
@@ -74,17 +84,11 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
 
         jLabel3.setText("Lance inicial");
 
-        lb_lance_atual.setText("Lance atual");
-
         atxt_descricao.setEditable(false);
         atxt_descricao.setColumns(20);
         atxt_descricao.setLineWrap(true);
         atxt_descricao.setRows(5);
         jScrollPane1.setViewportView(atxt_descricao);
-
-        lb_tempo.setText("Tempo restante");
-
-        txt_tempoRestante_produto.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,21 +98,13 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_lance_atual, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_lanceAtual_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_lanceInicial_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txt_lanceInicial_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_tempo))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_tempoRestante_produto)
-                            .addComponent(txt_nome_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE))))
+                        .addComponent(txt_nome_produto, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
@@ -119,23 +115,19 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, lb_lance_atual, lb_tempo, txt_lanceAtual_produto, txt_lanceInicial_produto, txt_nome_produto, txt_tempoRestante_produto});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel2, jLabel3, txt_lanceInicial_produto, txt_nome_produto});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                        .addGap(12, 12, 12))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 31, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_tempoRestante_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb_tempo))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
@@ -147,15 +139,10 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txt_lanceInicial_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lb_lance_atual, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_lanceAtual_produto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(12, 12, 12))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        bt_voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\left-arrow.png")); // NOI18N
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,13 +150,15 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
             }
         });
 
-        bt_iniciar.setText("Dar lance");
-        bt_iniciar.addActionListener(new java.awt.event.ActionListener() {
+        bt_iniciarLeilao.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\play-button.png")); // NOI18N
+        bt_iniciarLeilao.setText("Iniciar Leilão");
+        bt_iniciarLeilao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_iniciarActionPerformed(evt);
+                bt_iniciarLeilaoActionPerformed(evt);
             }
         });
 
+        bt_SelecionarProduto.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\table.png")); // NOI18N
         bt_SelecionarProduto.setText("Selecionar Produto");
         bt_SelecionarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,26 +171,24 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(213, 213, 213))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(bt_SelecionarProduto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_voltar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(bt_SelecionarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_iniciarLeilao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_SelecionarProduto, bt_iniciar, bt_voltar});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -211,25 +198,37 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_voltar)
-                    .addComponent(bt_iniciar)
+                    .addComponent(bt_iniciarLeilao)
                     .addComponent(bt_SelecionarProduto))
                 .addContainerGap())
         );
+
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel5.setText("      Fatec Leilão");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -237,9 +236,9 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_SelecionarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_SelecionarProdutoActionPerformed
-        new ListaProdutosServidorGUI().setVisible(true);
+        new ListaProdutosLeiloarServidorGUI().setVisible(true);
         this.setVisible(true);
-        this.dispose();       
+        this.dispose();
     }//GEN-LAST:event_bt_SelecionarProdutoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -248,10 +247,13 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
             txt_lanceInicial_produto.setText(lance_inicial);
             atxt_descricao.setText(descricao_prodto);
         }
-        txt_lanceAtual_produto.setVisible(false);
-        txt_tempoRestante_produto.setVisible(false);
-        lb_lance_atual.setVisible(false);
-        lb_tempo.setVisible(false);
+       
+        conexao.setNomeBanco("leilaoapp");
+        conexao.setPorta(3306);
+        conexao.setSenha("");
+        conexao.setServidor("localhost");
+        conexao.setUsuario("root");
+
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
@@ -260,13 +262,32 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bt_voltarActionPerformed
 
-    private void bt_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_iniciarActionPerformed
-        txt_lanceAtual_produto.setVisible(true);
-        txt_tempoRestante_produto.setVisible(true);
-        lb_lance_atual.setVisible(true);
-        lb_tempo.setVisible(true);
+    private void bt_iniciarLeilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_iniciarLeilaoActionPerformed
+        boolean valida;
         
-    }//GEN-LAST:event_bt_iniciarActionPerformed
+
+        
+
+        produtoVO.setCod_produto(cod_produto);
+        produtoVO.setStatus("ATI");
+        produtoVO.setDescricao_produto(descricao_prodto);
+        produtoVO.setLance_produto(nome_produto);
+        produtoVO.setLance_produto(lance_inicial);
+        produtoVO.setSenhaLeilao(CodeMaker.criaSenha());
+        
+        
+
+        try {
+            valida = produtoDAO.editarCli(produtoVO);
+            if (valida == true) {
+                
+                JOptionPane.showMessageDialog(null, "iniciado, a senha é: " + produtoVO.getSenhaLeilao());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LeilaoServidorGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_bt_iniciarLeilaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,20 +330,17 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea atxt_descricao;
     private javax.swing.JButton bt_SelecionarProduto;
-    private javax.swing.JButton bt_iniciar;
+    private javax.swing.JButton bt_iniciarLeilao;
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lb_lance_atual;
-    private javax.swing.JLabel lb_tempo;
-    private javax.swing.JTextField txt_lanceAtual_produto;
     private javax.swing.JTextField txt_lanceInicial_produto;
     private javax.swing.JTextField txt_nome_produto;
-    private javax.swing.JTextField txt_tempoRestante_produto;
     // End of variables declaration//GEN-END:variables
 }

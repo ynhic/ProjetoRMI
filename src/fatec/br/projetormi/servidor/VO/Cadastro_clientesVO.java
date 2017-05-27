@@ -10,9 +10,10 @@ import java.sql.Date;
 
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
-public class Cadastro_clientesVO implements Serializable{
+public class Cadastro_clientesVO implements Serializable {
+
     private String nome;
     private String rg;
     private String cpf;
@@ -69,7 +70,6 @@ public class Cadastro_clientesVO implements Serializable{
     public void setDatanasc(Date datanasc) {
         this.datanasc = datanasc;
     }
-
 
     public String getEndereco_cliente() {
         return endereco_cliente;
@@ -150,7 +150,7 @@ public class Cadastro_clientesVO implements Serializable{
     public void setTelefone_cliente(String telefone_cliente) {
         this.telefone_cliente = telefone_cliente;
     }
-    
+
     public String getSexo() {
         return sexo;
     }
@@ -158,5 +158,5 @@ public class Cadastro_clientesVO implements Serializable{
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
+
 }

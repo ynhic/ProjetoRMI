@@ -5,9 +5,11 @@
  */
 package fatec.br.projetormi.cliente.GUI;
 
+import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
+
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class MenuClienteGUI extends javax.swing.JFrame {
 
@@ -18,6 +20,8 @@ public class MenuClienteGUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    //atributos
+    AutentificacaoClienteVO clienteVO = new AutentificacaoClienteVO();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +38,10 @@ public class MenuClienteGUI extends javax.swing.JFrame {
         bt_cadastroProduto = new javax.swing.JToggleButton();
         bt_salaLeilao = new javax.swing.JToggleButton();
         bt_sair = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lb_email = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_opcoes = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -45,9 +53,15 @@ public class MenuClienteGUI extends javax.swing.JFrame {
         jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Funções"));
 
+        bt_cadastroProduto.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\floppy-disk (1).png")); // NOI18N
         bt_cadastroProduto.setText("Cadastrar produtos");
         bt_cadastroProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +69,7 @@ public class MenuClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        bt_salaLeilao.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\delivery.png")); // NOI18N
         bt_salaLeilao.setText("Sala de Leilão");
         bt_salaLeilao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +77,7 @@ public class MenuClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        bt_sair.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\exit.png")); // NOI18N
         bt_sair.setText("Deslogar");
         bt_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,20 +91,28 @@ public class MenuClienteGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_cadastroProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addComponent(bt_cadastroProduto, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                     .addComponent(bt_salaLeilao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bt_cadastroProduto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bt_salaLeilao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bt_sair))
+                .addComponent(bt_sair)
+                .addGap(21, 21, 21))
         );
+
+        jLabel2.setText("Usuário:");
+
+        jLabel9.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel9.setText(" Fatec Leilão");
 
         menu_opcoes.setText("Opçoes");
 
@@ -126,38 +150,58 @@ public class MenuClienteGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(7, 7, 7))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       System.exit(0);
-        
+        System.exit(0);
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         CadastroProdutosClienteGUI produtos = new CadastroProdutosClienteGUI();
         produtos.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();
         leilaoGUI.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
@@ -166,15 +210,23 @@ public class MenuClienteGUI extends javax.swing.JFrame {
 
     private void bt_salaLeilaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_salaLeilaoActionPerformed
         LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();
+        leilaoGUI.clienteVO.setEmail(clienteVO.getEmail());
+        leilaoGUI.clienteVO.setSenha(clienteVO.getSenha());
         leilaoGUI.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bt_salaLeilaoActionPerformed
 
     private void bt_cadastroProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastroProdutoActionPerformed
         CadastroProdutosClienteGUI produtos = new CadastroProdutosClienteGUI();
+        produtos.clienteVO.setEmail(clienteVO.getEmail());
+        produtos.clienteVO.setSenha(clienteVO.getSenha());
         produtos.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bt_cadastroProdutoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        lb_email.setText(clienteVO.getEmail());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -216,6 +268,9 @@ public class MenuClienteGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton bt_cadastroProduto;
     private javax.swing.JToggleButton bt_sair;
     private javax.swing.JToggleButton bt_salaLeilao;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -223,6 +278,7 @@ public class MenuClienteGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel lb_email;
     private javax.swing.JMenu menu_opcoes;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,9 +5,9 @@
  */
 package fatec.br.projetormi.cliente.GUI;
 
-import fatec.br.projetormi.cliente.servidor.GUI.*;
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.ServidorInter;
+import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.net.MalformedURLException;
@@ -15,23 +15,22 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class ListaProdutosClienteGUI extends javax.swing.JFrame {
     //atributos
     Conexao conexao = new Conexao();
     Cadastro_produtosDAO cadastro_ProdutosDAO = new Cadastro_produtosDAO(conexao);
     Cadastro_produtosVO cadastro_produtosVO = new Cadastro_produtosVO();
+    AutentificacaoClienteVO clienteVO = new AutentificacaoClienteVO();
     String status;
     
     
@@ -57,7 +56,7 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
 
         status = "ATI";
 
-        // Vector<Cadastro_produtosVO> dado = (Vector)cadastro_ProdutosDAO.listar(status);
+        
         LocateRegistry.getRegistry("192.168.0.102");
         objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
         Vector<Cadastro_produtosVO> dado = (Vector) objeto1.listar(status);
@@ -92,6 +91,9 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_produtos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lb_email = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Produtos");
@@ -103,6 +105,7 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista produtos"));
 
+        bt_voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\left-arrow.png")); // NOI18N
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,9 +134,12 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb_produtos);
 
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
         jLabel1.setText("Produtos para leiloar");
         jLabel1.setBorder(null);
         jLabel1.setName(""); // NOI18N
+
+        jLabel2.setText("Usuário:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,24 +147,38 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(lb_email))
+                    .addComponent(jLabel1))
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(bt_voltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, lb_email});
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel7.setText("              Fatec Leilão");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,11 +188,17 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(196, 196, 196))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -192,13 +218,11 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
         conexao.setUsuario("root");
         try {
             preencherTable();
-        } catch (RemoteException ex) {
-            Logger.getLogger(ListaProdutosClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotBoundException ex) {
-            Logger.getLogger(ListaProdutosClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MalformedURLException ex) {
+        } catch (RemoteException | NotBoundException | MalformedURLException ex) {
             Logger.getLogger(ListaProdutosClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        lb_email.setText(clienteVO.getEmail());
         
     }//GEN-LAST:event_formWindowOpened
 
@@ -207,27 +231,24 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
         
         
         int selecionada = tb_produtos.getSelectedRow();
-        if (selecionada == -1) {
-            System.out.println("nada selecionado"); //Não tem nada selecionado
-        }else {
-            System.out.println(tb_produtos.getValueAt(selecionada, 1)); 
-        }
-
-        //String cpf = suaTable.getValueAt(linhaSelecionada, 0).toString();
-        System.out.println("clicou");
-        LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();
         
-        leilaoGUI.setVisible(true);
+        LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();
+
+        leilaoGUI.clienteVO.setEmail(clienteVO.getEmail());
+        leilaoGUI.clienteVO.setSenha(clienteVO.getSenha());
         leilaoGUI.cod_produto = (String) tb_produtos.getValueAt(selecionada, 0);
         leilaoGUI.nome_produto = (String) tb_produtos.getValueAt(selecionada, 1);
         leilaoGUI.descricao_prodto = (String) tb_produtos.getValueAt(selecionada, 2);
         leilaoGUI.lance_inicial = (String) tb_produtos.getValueAt(selecionada, 3);
+        leilaoGUI.setVisible(true);
         
         this.dispose();
     }//GEN-LAST:event_tb_produtosMouseClicked
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI();       
+        LeilaoClienteGUI leilaoGUI = new LeilaoClienteGUI(); 
+        leilaoGUI.clienteVO.setEmail(clienteVO.getEmail());
+        leilaoGUI.clienteVO.setSenha(clienteVO.getSenha());
         leilaoGUI.setVisible(true);
         this.dispose();
         
@@ -274,8 +295,11 @@ public class ListaProdutosClienteGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lb_email;
     private javax.swing.JTable tb_produtos;
     // End of variables declaration//GEN-END:variables
 }

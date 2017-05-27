@@ -9,8 +9,6 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -22,19 +20,17 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author henrique
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class CadastroClientesClienteGUI extends javax.swing.JFrame {
-    
+
     private String sexo;
     Conexao conexao = new Conexao();
     Cadastro_clientesDAO cadastro_clientesDAO = new Cadastro_clientesDAO(conexao);
-    
-    
-    public void limparCampos(){
+
+    public void limparCampos() {
 
         rb_feminino.setSelected(false);
         rb_masculino.setSelected(false);
@@ -53,9 +49,9 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         txt_celular_cliente.setText("");
         txt_telefone_cliente.setText("");
         ptxt_senha_cliente.setText("");
-        
+
     }
-    
+
     /**
      * Creates new form Cadastro
      */
@@ -121,6 +117,8 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         rb_feminino = new javax.swing.JRadioButton();
         rb_masculino = new javax.swing.JRadioButton();
         bt_excluir = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -158,6 +156,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        btCadastrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\floppy-disk (1).png")); // NOI18N
         btCadastrar.setText("Cadastrar");
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,6 +164,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        btAlterar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\pencil.png")); // NOI18N
         btAlterar.setText("Alterar");
         btAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,6 +172,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        bt_voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\left-arrow.png")); // NOI18N
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +180,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        btPesquisar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\loupe.png")); // NOI18N
         btPesquisar.setText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +188,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        btLimpar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\eraser.png")); // NOI18N
         btLimpar.setText("Limpar Tudo");
         btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,7 +262,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
                     .addComponent(txt_email_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                     .addComponent(jLabel5)
                     .addComponent(ptxt_senha_cliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -353,7 +356,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
                             .addComponent(txt_endereco_cliente_pais)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                             .addComponent(txt_endereco_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,7 +406,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
                             .addComponent(jLabel41)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txt_endereco_cliente_pais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados pessoais", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -421,6 +424,11 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txt_cpf.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                txt_cpfMouseDragged(evt);
+            }
+        });
         txt_cpf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_cpfFocusLost(evt);
@@ -534,6 +542,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
+        bt_excluir.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\delete-photo.png")); // NOI18N
         bt_excluir.setText("Excluir");
         bt_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -541,50 +550,74 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel6.setText("              Fatec Leilão");
+
+        jLabel8.setText("Para realizar busca de cadastro, basta digitar o CPF e clicar em Pesquisar");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(387, 387, 387)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(bt_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(bt_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(btCadastrar)
+                    .addComponent(btAlterar)
+                    .addComponent(bt_voltar)
+                    .addComponent(btLimpar)
+                    .addComponent(btPesquisar)
+                    .addComponent(bt_excluir))
+                .addGap(17, 17, 17))
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btAlterar, btCadastrar, btLimpar, btPesquisar, bt_excluir, bt_voltar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -619,14 +652,14 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         conexao.setPorta(3306);
         conexao.setSenha("");
         conexao.setServidor("localhost");
-        conexao.setUsuario("root");   
+        conexao.setUsuario("root");
         btAlterar.setEnabled(false);
         bt_excluir.setEnabled(false);
 
     }//GEN-LAST:event_formWindowOpened
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        
+
         boolean valida;
         ServidorInter objeto1 = null;
 
@@ -711,16 +744,6 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         }
-        
-
-        /* 
-          try {
-            cadastro_clientesDAO.cadastrarCli(cadastro_clientesVO);
-            JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
-                        "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        } */
         limparCampos();
 
     }//GEN-LAST:event_btCadastrarActionPerformed
@@ -796,7 +819,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         cadastro_clientesVO.setSenha_cliente(ptxt_senha_cliente.getText());
 
         boolean validar;
-        
+
         try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
@@ -818,25 +841,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
         } catch (NotBoundException | MalformedURLException ex) {
             Logger.getLogger(CadastroClientesClienteGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        /*
-        try {
-            if (cadastro_clientesDAO.editarCli(cadastro_clientesVO) == true) {
-                JOptionPane.showMessageDialog(rootPane, "Alteração OK",
-                        "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
-                btAlterar.setEnabled(false);
-                bt_excluir.setEnabled(false);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Erro na Alteração",
-                        "Mensagem ao Usuário", JOptionPane.ERROR_MESSAGE);
-                btAlterar.setEnabled(false);
-                bt_excluir.setEnabled(false);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+
         limparCampos();
 
     }//GEN-LAST:event_btAlterarActionPerformed
@@ -853,9 +858,6 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
 
         cadastro_clientesVO.setCpf(txt_cpf.getText());
 
-        /* String CPF;
-        CPF = txtCpf.getValue().toString();
-        cadastro_clientesVO.setCpf(CPF);*/
         try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
@@ -908,60 +910,7 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         }
-         
-         
-        /*
-        try {
-            //pesquisa no banco
-            cadastro_clientesVO = cadastro_clientesDAO.buscarCli(cadastro_clientesVO);
-            if(cadastro_clientesVO == null) {
-                JOptionPane.showMessageDialog(rootPane, "Dados nao encontrados!",
-                    "Mensagem ao Usuário", 
-                    JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                //achou, entao jogar dados para tela
-                
-                
-                txt_cpf.setText(cadastro_clientesVO.getCpf());
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                
-                String dateString;
-                dateString = sdf.format(cadastro_clientesVO.getDatanasc());
-                
-                txt_nome.setText(cadastro_clientesVO.getNome());
-                txt_rg.setText(cadastro_clientesVO.getRg());
-                txt_cpf.setText(cadastro_clientesVO.getCpf());
-                txt_datanasc.setText(dateString);
 
-
-                txt_endereco_cliente.setText(cadastro_clientesVO.getEndereco_cliente());
-                txt_endereco_cliente_numero.setText(cadastro_clientesVO.getEndereco_cliente_numero());
-                txt_endereco_cliente_complemento.setText(cadastro_clientesVO.getEndereco_cliente_complemento());
-                txt_endereco_cliente_cep.setText(cadastro_clientesVO.getEndereco_cliente_cep());
-                txt_endereco_cliente_cidade.setText(cadastro_clientesVO.getEndereco_cliente_cidade());
-                txt_endereco_cliente_uf.setText(cadastro_clientesVO.getEndereco_cliente_uf());
-                txt_endereco_cliente_pais.setText(cadastro_clientesVO.getEndereco_cliente_pais());
-
-                txt_email_cliente.setText(cadastro_clientesVO.getEmail_cliente());
-                txt_celular_cliente.setText(cadastro_clientesVO.getCelular_cliente());
-                txt_telefone_cliente.setText(cadastro_clientesVO.getTelefone_cliente());
-                ptxt_senha_cliente.setText(cadastro_clientesVO.getSenha_cliente());
-                
-                if("M".equals(cadastro_clientesVO.getSexo()))
-                    rb_masculino.setSelected(true);
-                if("F".equals(cadastro_clientesVO.getSexo()))
-                    rb_feminino.setSelected(true);
-                
-            btAlterar.setEnabled(true);
-            bt_excluir.setEnabled(true);
-            btCadastrar.setEnabled(false);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(rootPane, "Erro no try " + 
-                    ex.getMessage(), "Mensagem ao Usuário", 
-                    JOptionPane.ERROR_MESSAGE);
-        }*/
-        
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
@@ -1005,15 +954,15 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_endereco_cliente_paisActionPerformed
 
     private void bt_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_excluirActionPerformed
-     /**
-     * Este metodo chama o objeto gerenciarClientesDAO para remocao de cliente no banco
-     */    
+        /**
+         * Este metodo chama o objeto gerenciarClientesDAO para remocao de
+         * cliente no banco
+         */
         String cpf = txt_cpf.getText(); //Armazena o cpf digitado em txtCpf
         String nome = txt_nome.getText(); //Armazena nome digitado em txtNome
-        
+
         ServidorInter objeto1 = null;
-        
-        
+
         try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
@@ -1023,21 +972,25 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         }
-            JOptionPane.showMessageDialog(null, "Cliente " + nome + " excluido com sucesso!"); //Prompt de mensagem 
-            limparCampos(); //Execulta o metodo para limpar os campos
-            this.dispose();
-            AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI();
-                autentificacaoGUI.setVisible(true);
-            
+        JOptionPane.showMessageDialog(null, "Cliente " + nome + " excluido com sucesso!"); //Prompt de mensagem 
+        limparCampos(); //Execulta o metodo para limpar os campos
+        this.dispose();
+        AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI();
+        autentificacaoGUI.setVisible(true);
+
     }//GEN-LAST:event_bt_excluirActionPerformed
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
         AutentificacaoClienteGUI autentificacaoGUI = new AutentificacaoClienteGUI(); //Cria o objeto menu
         autentificacaoGUI.setVisible(true); //Exibe objeot menu
         this.dispose(); //Fecha o form GerenciarClientes
-        
-        
+
+
     }//GEN-LAST:event_bt_voltarActionPerformed
+
+    private void txt_cpfMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_cpfMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_cpfMouseDragged
 
     /**
      * @param args the command line arguments
@@ -1113,7 +1066,9 @@ public class CadastroClientesClienteGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;

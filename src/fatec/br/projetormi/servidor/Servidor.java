@@ -9,29 +9,31 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
+
 /**
  *
  * @author ynhic
  */
 public class Servidor {
+
     /*public static void main(String[] args) {
         System.out.println("Server ativo...");
         new Servidor();
     }*/
-    
-    public Servidor(){
-        
-        try{
+
+    public Servidor() {
+
+        try {
             ServidorInter objeto1 = new ServidorImpl();
             //registra o servidor  pela porta 9999, evitando de 
             //faze-lo  no console usando RMIC
-            
+
             LocateRegistry.createRegistry(9999);
             Naming.rebind("rmi://localhost:9999/MensageiroService", objeto1);
-             
-        } catch (MalformedURLException | RemoteException e){
-            System.out.println("Erro "+e);
+
+        } catch (MalformedURLException | RemoteException e) {
+            System.out.println("Erro " + e);
         }
-    
+
     }
 }

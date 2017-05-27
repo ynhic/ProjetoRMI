@@ -7,33 +7,29 @@ package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.AutentificacaoClienteDAO;
 import fatec.br.projetormi.servidor.ServidorInter;
-import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class AutentificacaoClienteGUI extends javax.swing.JFrame {
     //------------ Variaveis Globais ------------
-    
+
     private Conexao conexao = new Conexao(); //Cria um objeto para a conexao com o banco de dados
-    private AutentificacaoClienteDAO autentificacaoDAO =  new AutentificacaoClienteDAO(conexao); //Cria a DAO para a troca de dados com o banco
-    
+    private AutentificacaoClienteDAO autentificacaoDAO = new AutentificacaoClienteDAO(conexao); //Cria a DAO para a troca de dados com o banco
+
     /**
      * Creates new form AutentificacaoGUI
      */
     public AutentificacaoClienteGUI() {
-        
+
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -55,6 +51,8 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
         txt_usuario = new javax.swing.JTextField();
         txt_senha = new javax.swing.JPasswordField();
         bt_cadastro = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
@@ -80,8 +78,10 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\blue-user-icon.png")); // NOI18N
         jLabel1.setText("Usuário");
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\password-icon.png")); // NOI18N
         jLabel2.setText("Senha");
 
         bt_cadastro.setText("Criar usuario");
@@ -102,19 +102,20 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
                         .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGap(21, 21, 21)
                         .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                             .addComponent(txt_senha)))
                     .addGroup(jp_senhaLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bt_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addGroup(jp_senhaLayout.createSequentialGroup()
                                 .addComponent(bt_login, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bt_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bt_sair, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bt_cadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
         );
 
         jp_senhaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_login, bt_sair});
@@ -130,7 +131,9 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
                 .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(jp_senhaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_sair)
                     .addComponent(bt_login))
@@ -139,21 +142,31 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel3.setText("      Fatec Leilão");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jp_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jp_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jp_senha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -163,12 +176,12 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
         CadastroClientesClienteGUI cadastro_clienteGUI = new CadastroClientesClienteGUI();
         cadastro_clienteGUI.setVisible(true);
         this.dispose();
-        
-        
+
+
     }//GEN-LAST:event_bt_cadastroActionPerformed
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed
-        
+
         String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
         String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha
         boolean valida;
@@ -177,10 +190,12 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
         try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
-            valida = objeto1.validarSenha(email,senha );
+            valida = objeto1.validarSenha(email, senha);
 
             if (valida == true) {
                 MenuClienteGUI menu = new MenuClienteGUI();
+                menu.clienteVO.setEmail(email);
+                menu.clienteVO.setSenha(senha);
                 menu.setVisible(true);
                 this.dispose();
             } else {
@@ -194,41 +209,12 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
         }
-        
-        
-        
-        
-       /* String email = txt_usuario.getText(); //Armazena o usuario digitado em txtUser
-        String senha = txt_senha.getText(); //Armazena a senha digitada em txtSenha 
-        AutentificacaoVO autentificacaoVO = new AutentificacaoVO();
-               
-        try {
-            autentificacaoVO = autentificacaoDAO.validarSenha(email, senha);
-            if(autentificacaoVO != null){
-                MenuGUI menu = new MenuGUI();
-                menu.setVisible(true);
-                this.dispose();
-            }else{
-                if(email.equals("")&& senha.equals("")){
-                    JOptionPane.showMessageDialog(null,"Digite email e senha para entrar","Atenção", JOptionPane.WARNING_MESSAGE);
-                }else{
-                    JOptionPane.showMessageDialog(null,"Email ou senha incorretos","Atenção", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AutentificacaoGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        
-        
-        
-        
     }//GEN-LAST:event_bt_loginActionPerformed
 
     private void bt_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_sairActionPerformed
         System.exit(0);
-        
-        
+
+
     }//GEN-LAST:event_bt_sairActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -236,9 +222,9 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
         conexao.setPorta(3306);
         conexao.setSenha("");
         conexao.setServidor("localhost");
-        conexao.setUsuario("root"); 
-        
-        
+        conexao.setUsuario("root");
+
+
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -283,6 +269,8 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_sair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JPanel jp_senha;
     private javax.swing.JPasswordField txt_senha;
     private javax.swing.JTextField txt_usuario;

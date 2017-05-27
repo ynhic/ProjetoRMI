@@ -10,50 +10,47 @@ import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 /**
  *
- * @author Sammy Guergachi <sguergachi at gmail.com>
+ * @author Ynhic <ynhic@hotmail.com>
  */
-public class ListaProdutosServidorGUI extends javax.swing.JFrame {
+public class ListaProdutosLeiloarServidorGUI extends javax.swing.JFrame {
+
     //atributos
     Conexao conexao = new Conexao();
     Cadastro_produtosDAO cadastro_ProdutosDAO = new Cadastro_produtosDAO(conexao);
     Cadastro_produtosVO cadastro_produtosVO = new Cadastro_produtosVO();
     String status;
-    
-    
+
     private DefaultTableModel tableModelProduto;
-    
+
     /**
      * Creates new form ListaProdutosGUI
      */
-    public ListaProdutosServidorGUI() {
+    public ListaProdutosLeiloarServidorGUI() {
         initComponents();
     }
     //metodos
-    
-    
-    private void preencherTable(){
+
+    private void preencherTable() {
         Vector colunas = new Vector(4);
         colunas.add("Cod");
         colunas.add("Nome produto");
         colunas.add("Descrição");
         colunas.add("Lance inicial");
-        
+
         status = "NAT";
-        
-        try{
-            Vector<Cadastro_produtosVO> dado = (Vector)cadastro_ProdutosDAO.listar(status);
-            
+
+        try {
+            Vector<Cadastro_produtosVO> dado = (Vector) cadastro_ProdutosDAO.listar(status);
+
             tableModelProduto = new DefaultTableModel();
             tableModelProduto.setColumnIdentifiers(colunas);
-            
+
             tb_produtos.setModel(tableModelProduto);
             TableColumnModel modeloDaColuna = tb_produtos.getColumnModel();
             modeloDaColuna.getColumn(0).setMaxWidth(35);
@@ -64,14 +61,13 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
             dado.forEach((x) -> {
                 tableModelProduto.addRow(x.toVector());
             });
-            
-        } catch (SQLException ex){
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         tb_produtos.setModel(tableModelProduto);
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +83,7 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_produtos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Produtos");
@@ -98,6 +95,7 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista produtos"));
 
+        bt_voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\left-arrow.png")); // NOI18N
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +132,7 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 783, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -155,19 +153,29 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel5.setText("      Fatec Leilão");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(299, 299, 299)
+                .addComponent(jLabel5)
+                .addContainerGap(297, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -178,46 +186,45 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         /**
-        * Este metodo preenche a tabela com os produtos cadastrados após o form ser iniciado
-        */
+         * Este metodo preenche a tabela com os produtos cadastrados após o form
+         * ser iniciado
+         */
         conexao.setNomeBanco("LEILAOAPP");
         conexao.setPorta(3306);
         conexao.setSenha("");
         conexao.setServidor("localhost");
         conexao.setUsuario("root");
         preencherTable();
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void tb_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_produtosMouseClicked
 
-        
-        
         int selecionada = tb_produtos.getSelectedRow();
         if (selecionada == -1) {
             System.out.println("nada selecionado"); //Não tem nada selecionado
-        }else {
-            System.out.println(tb_produtos.getValueAt(selecionada, 1)); 
+        } else {
+            System.out.println(tb_produtos.getValueAt(selecionada, 1));
         }
 
         //String cpf = suaTable.getValueAt(linhaSelecionada, 0).toString();
         System.out.println("clicou");
         LeilaoServidorGUI leilaoGUI = new LeilaoServidorGUI();
-        
+
         leilaoGUI.setVisible(true);
         leilaoGUI.cod_produto = (String) tb_produtos.getValueAt(selecionada, 0);
         leilaoGUI.nome_produto = (String) tb_produtos.getValueAt(selecionada, 1);
         leilaoGUI.descricao_prodto = (String) tb_produtos.getValueAt(selecionada, 2);
         leilaoGUI.lance_inicial = (String) tb_produtos.getValueAt(selecionada, 3);
-        
+
         this.dispose();
     }//GEN-LAST:event_tb_produtosMouseClicked
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-        LeilaoServidorGUI leilaoGUI = new LeilaoServidorGUI();       
+        LeilaoServidorGUI leilaoGUI = new LeilaoServidorGUI();
         leilaoGUI.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_bt_voltarActionPerformed
 
     /**
@@ -237,21 +244,23 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosLeiloarServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosLeiloarServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosLeiloarServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosLeiloarServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaProdutosServidorGUI().setVisible(true);
+                new ListaProdutosLeiloarServidorGUI().setVisible(true);
             }
         });
     }
@@ -259,6 +268,7 @@ public class ListaProdutosServidorGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tb_produtos;

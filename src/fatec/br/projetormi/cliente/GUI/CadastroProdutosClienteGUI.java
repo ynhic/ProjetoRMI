@@ -7,6 +7,7 @@ package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.ServidorInter;
+import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.net.MalformedURLException;
@@ -18,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author ynhic
+ * @author Ynhic <ynhic@hotmail.com>
  */
 public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
 
@@ -31,8 +32,9 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
     }
     Conexao conexao = new Conexao();
     Cadastro_produtosDAO cadastro_produtosDAO = new Cadastro_produtosDAO(conexao);
-    
-    public void limparCampos(){
+    AutentificacaoClienteVO clienteVO = new AutentificacaoClienteVO();
+
+    public void limparCampos() {
         txt_lance_produto.setText("");
         txt_nome_produto.setText("");
         atxt_descricao_produto.setText("");
@@ -57,9 +59,11 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txt_lance_produto = new javax.swing.JTextField();
         bt_cadastrar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         bt_limpar = new javax.swing.JButton();
         bt_voltar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lb_email = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -104,7 +108,7 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(txt_lance_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(119, 119, 119))))
+                        .addGap(184, 184, 184))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,6 +127,7 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        bt_cadastrar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\floppy-disk (1).png")); // NOI18N
         bt_cadastrar.setText("Cadastrar");
         bt_cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,8 +135,7 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-
+        bt_limpar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\eraser.png")); // NOI18N
         bt_limpar.setText("Limpar");
         bt_limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,12 +143,15 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
             }
         });
 
+        bt_voltar.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\left-arrow.png")); // NOI18N
         bt_voltar.setText("Voltar");
         bt_voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_voltarActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Usuário:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,31 +160,43 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(bt_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_limpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bt_voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(221, 221, 221)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lb_email, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_limpar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_cadastrar, bt_limpar, bt_voltar});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bt_cadastrar)
-                    .addComponent(jButton2)
                     .addComponent(bt_limpar)
-                    .addComponent(bt_voltar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bt_voltar)
+                    .addComponent(jLabel4)
+                    .addComponent(lb_email))
+                .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel4, lb_email});
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel6.setText("              Fatec Leilão");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -185,15 +204,21 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -201,30 +226,28 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
 
     private void bt_limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_limparActionPerformed
         limparCampos();
-                
-                
+
+
     }//GEN-LAST:event_bt_limparActionPerformed
 
     private void bt_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cadastrarActionPerformed
-        if(txt_lance_produto.getText().isEmpty() ||
-                txt_nome_produto.getText().isEmpty() ||
-                atxt_descricao_produto.getText().isEmpty()){
-                    JOptionPane.showMessageDialog(null,"Digite campos obrigatórios","Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
-                    return;
+        if (txt_lance_produto.getText().isEmpty()
+                || txt_nome_produto.getText().isEmpty()
+                || atxt_descricao_produto.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Digite campos obrigatórios", "Formulário Incompleto", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-         
-        
-         ServidorInter objeto1 = null;
-         Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();
-         boolean valida;
-         
-         //dados do produto
-         produtoVO.setNome_produto(txt_nome_produto.getText().toUpperCase());
-         produtoVO.setLance_produto(txt_lance_produto.getText().toUpperCase());
-         produtoVO.setDescricao_produto(atxt_descricao_produto.getText().toUpperCase());
-         produtoVO.setStatus("NAT");
-         
-         
+
+        ServidorInter objeto1 = null;
+        Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();
+        boolean valida;
+
+        //dados do produto
+        produtoVO.setNome_produto(txt_nome_produto.getText().toUpperCase());
+        produtoVO.setLance_produto(txt_lance_produto.getText().toUpperCase());
+        produtoVO.setDescricao_produto(atxt_descricao_produto.getText().toUpperCase());
+        produtoVO.setStatus("NAT");
+
         try {
             LocateRegistry.getRegistry("192.168.0.102");
             objeto1 = (ServidorInter) Naming.lookup("rmi://localhost:9999/MensageiroService");
@@ -233,42 +256,35 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
             if (valida == true) {
                 JOptionPane.showMessageDialog(rootPane, "Cadastro feito com sucesso",
                         "Mensagem ao Usuário", JOptionPane.INFORMATION_MESSAGE);
-                
+
             }
 
         } catch (MalformedURLException | RemoteException | NotBoundException e) {
             // TODO Auto-generated catch block
             System.out.println("problema de conexão" + e);
-        } 
-         
-         
-        /*  
-        try {
-            cadastro_produtosDAO.cadastrar_produtos(produtoVO);
-            JOptionPane.showMessageDialog(null,"Dados enviados com sucesso","Inserção completa", JOptionPane.INFORMATION_MESSAGE);
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Cadastro_clientesGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        limparCampos();       
-        
+        }
+        limparCampos();
+
     }//GEN-LAST:event_bt_cadastrarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        conexao.setNomeBanco("leilaoapp");
+        /*conexao.setNomeBanco("leilaoapp");
         conexao.setPorta(3306);
         conexao.setSenha("");
         conexao.setServidor("localhost");
-        conexao.setUsuario("root");   
-        
+        conexao.setUsuario("root");*/
+        lb_email.setText(clienteVO.getEmail());
+
 
     }//GEN-LAST:event_formWindowOpened
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
-      MenuClienteGUI menu = new MenuClienteGUI();
-      menu.setVisible(true);
-      this.dispose();
-        
+        MenuClienteGUI menu = new MenuClienteGUI();
+        menu.clienteVO.setEmail(clienteVO.getEmail());
+        menu.clienteVO.setSenha(clienteVO.getSenha());
+        menu.setVisible(true);
+        this.dispose();
+
     }//GEN-LAST:event_bt_voltarActionPerformed
 
     /**
@@ -314,13 +330,15 @@ public class CadastroProdutosClienteGUI extends javax.swing.JFrame {
     private javax.swing.JButton bt_cadastrar;
     private javax.swing.JButton bt_limpar;
     private javax.swing.JButton bt_voltar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lb_email;
     private javax.swing.JTextField txt_lance_produto;
     private javax.swing.JTextField txt_nome_produto;
     // End of variables declaration//GEN-END:variables
