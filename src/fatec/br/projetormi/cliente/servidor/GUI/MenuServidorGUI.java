@@ -46,7 +46,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Funções"));
 
-        bt_verProdutosAtivo.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\table.png")); // NOI18N
+        bt_verProdutosAtivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/table.png"))); // NOI18N
         bt_verProdutosAtivo.setText(" Ver Leilao Ativo");
         bt_verProdutosAtivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,7 +54,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
             }
         });
 
-        bt_cadastrarLeilao.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\law (1).png")); // NOI18N
+        bt_cadastrarLeilao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/floppy-disk (1).png"))); // NOI18N
         bt_cadastrarLeilao.setText("Cadastrar Leilão");
         bt_cadastrarLeilao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +62,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
             }
         });
 
-        bt_sair.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Downloads\\exit.png")); // NOI18N
+        bt_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/exit.png"))); // NOI18N
         bt_sair.setText("Deslogar");
         bt_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,11 +91,11 @@ public class MenuServidorGUI extends javax.swing.JFrame {
                 .addComponent(bt_cadastrarLeilao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bt_sair)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\ynhic\\Desktop\\auction-hammer-icon (1).png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/auction-hammer-icon (1).png"))); // NOI18N
         jLabel5.setText("      Fatec Leilão");
 
         menu_opcoes.setText("Opçoes");

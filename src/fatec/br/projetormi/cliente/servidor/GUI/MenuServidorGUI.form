@@ -126,7 +126,7 @@
                   <Component id="bt_cadastrarLeilao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="bt_sair" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -135,7 +135,7 @@
         <Component class="javax.swing.JButton" name="bt_verProdutosAtivo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ynhic\Downloads\table.png"/>
+              <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/table.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=" Ver Leilao Ativo"/>
           </Properties>
@@ -146,7 +146,7 @@
         <Component class="javax.swing.JButton" name="bt_cadastrarLeilao">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ynhic\Downloads\law (1).png"/>
+              <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/floppy-disk (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cadastrar Leil&#xe3;o"/>
           </Properties>
@@ -157,7 +157,7 @@
         <Component class="javax.swing.JButton" name="bt_sair">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ynhic\Downloads\exit.png"/>
+              <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/exit.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Deslogar"/>
           </Properties>
@@ -173,7 +173,7 @@
           <Font name="Yu Gothic UI Light" size="18" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\ynhic\Desktop\auction-hammer-icon (1).png"/>
+          <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/auction-hammer-icon (1).png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="      Fatec Leil&#xe3;o"/>
       </Properties>

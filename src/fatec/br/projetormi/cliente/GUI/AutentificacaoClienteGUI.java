@@ -207,7 +207,7 @@ public class AutentificacaoClienteGUI extends javax.swing.JFrame {
             }
         } catch (MalformedURLException | RemoteException | NotBoundException e) {
             // TODO Auto-generated catch block
-            System.out.println("problema de conexão" + e);
+            JOptionPane.showMessageDialog(null, "problema de conexão" + e, "Erro", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_bt_loginActionPerformed
 

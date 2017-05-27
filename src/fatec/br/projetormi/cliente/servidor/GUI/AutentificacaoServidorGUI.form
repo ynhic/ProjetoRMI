@@ -29,13 +29,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel3" min="-2" pref="264" max="-2" attributes="0"/>
                   <Component id="jp_senha" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,9 +44,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jp_senha" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,16 +79,10 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="bt_cadastro" alignment="2" min="-2" pref="162" max="-2" attributes="0"/>
-                              <Group type="102" alignment="2" attributes="0">
-                                  <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                                  <Component id="bt_login" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="bt_sair" min="-2" pref="76" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                          <Component id="bt_login" pref="82" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="bt_sair" min="-2" pref="76" max="-2" attributes="0"/>
                           <EmptySpace min="43" pref="43" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -117,9 +111,7 @@
                       <Component id="bt_sair" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="bt_login" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="bt_cadastro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,18 +137,10 @@
         </Component>
         <Component class="javax.swing.JPasswordField" name="txt_senha">
         </Component>
-        <Component class="javax.swing.JButton" name="bt_cadastro">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Criar usuario"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_cadastroActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ynhic\Desktop\blue-user-icon.png"/>
+              <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/blue-user-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
           </Properties>
@@ -164,7 +148,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ynhic\Desktop\password-icon.png"/>
+              <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/password-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Senha"/>
           </Properties>
@@ -179,9 +163,9 @@
           <Font name="Yu Gothic UI Light" size="18" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\ynhic\Desktop\auction-hammer-icon (1).png"/>
+          <Image iconType="3" name="/fatec/br/projetormi/cliente/imagens/auction-hammer-icon (1).png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="      Fatec Leil&#xe3;o"/>
+        <Property name="text" type="java.lang.String" value="   Fatec Leil&#xe3;o"/>
       </Properties>
     </Component>
   </SubComponents>
