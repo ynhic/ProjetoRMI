@@ -5,6 +5,8 @@
  */
 package fatec.br.projetormi.servidor.VO;
 
+import java.util.Vector;
+
 /**
  *
  * @author Ynhic <ynhic@hotmail.com>
@@ -91,6 +93,18 @@ public class CadastroVenda {
 
     public void setEmailCliente(String emailCliente) {
         this.emailCliente = emailCliente;
+    }
+    public Vector toVector() {
+        Vector retorno = new Vector(4);
+        retorno.add(idVenda);
+        retorno.add(idProduto);
+        retorno.add(idCliente);
+        retorno.add(nomeProduto);
+        retorno.add(descricaoProduto);
+        retorno.add(lanceInicial);
+        retorno.add(lanceFinal);
+        retorno.add(emailCliente);   
+        return retorno;
     }
 
 }

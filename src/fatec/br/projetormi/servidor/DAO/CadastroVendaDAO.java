@@ -7,11 +7,14 @@
 package fatec.br.projetormi.servidor.DAO;
 
 import fatec.br.projetormi.servidor.VO.CadastroVenda;
+import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.conexao.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Vector;
 
 /**
  *
@@ -124,6 +127,41 @@ public class CadastroVendaDAO {
         return rs.next(); //Quando encontrado...
         
         
+    }
+    
+    public List<CadastroVenda> listar(String status) throws SQLException {
+        /**
+         * Este metodo busca todos os produtos no banco de dados e os armazena
+         * em um List
+         */
+
+        List<CadastroVenda> ListaVendaVO = new Vector<>();
+
+        conexao.abrir();//abre conexao com o banco
+        sql = "SELECT * FROM TABVENDA";//comando sql
+
+        pst = conexao.con().prepareStatement(sql);
+        //dados do produto      
+        //pst.setString(1, status);
+
+        rs = pst.executeQuery();//executa comando sql
+
+        while (rs.next()) {//quando encontrado
+            CadastroVenda vendaVO = new CadastroVenda();//instancia um novo Cadastro_produto
+            vendaVO.setIdProduto(rs.getString("IDPRODUTO"));
+            vendaVO.setIdCliente(rs.getString("IDCLIENTE"));
+            vendaVO.setIdVenda(rs.getString("IDVENDA"));
+            vendaVO.setNomeProduto(rs.getString("NOME_PRODUTO"));
+            vendaVO.setDescricaoProduto(rs.getString("DESCRICAO_PRODUTO"));
+            vendaVO.setLanceInicial(rs.getString("LANCE_INICIAL"));
+            vendaVO.setLanceFinal(rs.getString("LANCE_FINAL"));
+            vendaVO.setEmailCliente(rs.getString("EMAIL_CLIENTE"));
+            
+
+            ListaVendaVO.add(vendaVO);
+        }
+        conexao.fechar();
+        return ListaVendaVO;//retorna o List
     }
 
     

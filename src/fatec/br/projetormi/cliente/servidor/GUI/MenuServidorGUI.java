@@ -33,6 +33,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
         bt_verProdutosAtivo = new javax.swing.JButton();
         bt_cadastrarLeilao = new javax.swing.JButton();
         bt_sair = new javax.swing.JButton();
+        bt_encerado = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_opcoes = new javax.swing.JMenu();
@@ -70,6 +71,14 @@ public class MenuServidorGUI extends javax.swing.JFrame {
             }
         });
 
+        bt_encerado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/table.png"))); // NOI18N
+        bt_encerado.setText("Leilões encerrado");
+        bt_encerado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_enceradoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,21 +86,28 @@ public class MenuServidorGUI extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_cadastrarLeilao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bt_verProdutosAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(bt_sair, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_verProdutosAtivo, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_cadastrarLeilao, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_encerado, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_cadastrarLeilao, bt_encerado, bt_sair, bt_verProdutosAtivo});
+
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bt_verProdutosAtivo)
+                .addComponent(bt_cadastrarLeilao, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_cadastrarLeilao)
+                .addComponent(bt_encerado, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_sair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(bt_verProdutosAtivo, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_sair, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel5.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
@@ -142,8 +158,8 @@ public class MenuServidorGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -177,6 +193,13 @@ public class MenuServidorGUI extends javax.swing.JFrame {
         leilando.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bt_verProdutosAtivoActionPerformed
+
+    private void bt_enceradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_enceradoActionPerformed
+        
+        ListaProdutosVendidosServidorGUI vendidoGUI = new ListaProdutosVendidosServidorGUI();
+        vendidoGUI.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bt_enceradoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +241,7 @@ public class MenuServidorGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_cadastrarLeilao;
+    private javax.swing.JButton bt_encerado;
     private javax.swing.JButton bt_sair;
     private javax.swing.JButton bt_verProdutosAtivo;
     private javax.swing.JLabel jLabel5;

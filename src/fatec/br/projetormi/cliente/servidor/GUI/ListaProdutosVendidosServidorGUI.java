@@ -22,7 +22,7 @@ import javax.swing.table.TableColumnModel;
  *
  * @author Ynhic <ynhic@hotmail.com>
  */
-public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
+public class ListaProdutosVendidosServidorGUI extends javax.swing.JFrame {
 
     //atributos
     Conexao conexao = new Conexao();
@@ -37,36 +37,40 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
     /**
      * Creates new form ListaProdutosGUI
      */
-    public ListaProdutosLeiloandoServidorGUI() {
+    public ListaProdutosVendidosServidorGUI() {
         initComponents();
     }
     //metodos
 
     private void preencherTable() {
         Vector colunas = new Vector(4);
-        colunas.add("Cod");
+        colunas.add("Cod Venda");
+        colunas.add("Cod Produto");
+        colunas.add("Cod Cliente");
         colunas.add("Nome produto");
         colunas.add("Descrição");
         colunas.add("Lance inicial");
-        colunas.add("Lance atual");
-        colunas.add("vencendo");
+        colunas.add("Lance Final");
+        colunas.add("Email Vencedor");
 
-        status = "ATI";
+        status = "VEND";
 
         try {
-            Vector<Cadastro_produtosVO> dado = (Vector) cadastro_ProdutosDAO.listar(status);
+            Vector<CadastroVenda> dado = (Vector) vendaDAO.listar(status);
 
             tableModelProduto = new DefaultTableModel();
             tableModelProduto.setColumnIdentifiers(colunas);
 
             tb_produtos.setModel(tableModelProduto);
             TableColumnModel modeloDaColuna = tb_produtos.getColumnModel();
-            modeloDaColuna.getColumn(0).setMaxWidth(35);
-            modeloDaColuna.getColumn(1).setMaxWidth(100);
-            modeloDaColuna.getColumn(2).setMaxWidth(400);
+            modeloDaColuna.getColumn(0).setMaxWidth(75);
+            modeloDaColuna.getColumn(1).setMaxWidth(85);
+            modeloDaColuna.getColumn(2).setMaxWidth(75);
             modeloDaColuna.getColumn(3).setMaxWidth(100);
-            modeloDaColuna.getColumn(4).setMaxWidth(100);
-            modeloDaColuna.getColumn(5).setMaxWidth(200);
+            modeloDaColuna.getColumn(4).setMaxWidth(400);
+            modeloDaColuna.getColumn(5).setMaxWidth(100);
+            modeloDaColuna.getColumn(6).setMaxWidth(100);
+            modeloDaColuna.getColumn(7).setMaxWidth(200);
             //for no estilo lambda
             dado.forEach((x) -> {
                 tableModelProduto.addRow(x.toVector());
@@ -94,11 +98,10 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tb_produtos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        bt_finalizar = new javax.swing.JToggleButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Lista de Produtos Leiloando");
+        setTitle("Lista de Produtos Vendidos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -128,6 +131,7 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
         ));
         tb_produtos.setCellSelectionEnabled(true);
         tb_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tb_produtos.setEnabled(false);
         tb_produtos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tb_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,35 +140,22 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tb_produtos);
 
-        jLabel1.setText("Produtos leiloando");
+        jLabel1.setText("Produtos Vendidos");
         jLabel1.setName(""); // NOI18N
-
-        bt_finalizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fatec/br/projetormi/cliente/imagens/stop.png"))); // NOI18N
-        bt_finalizar.setText("Finalizar");
-        bt_finalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_finalizarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 760, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1083, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bt_finalizar)
-                .addGap(18, 18, 18)
                 .addComponent(bt_voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {bt_finalizar, bt_voltar});
-
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -173,9 +164,7 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_voltar)
-                    .addComponent(bt_finalizar))
+                .addComponent(bt_voltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,10 +180,10 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(306, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(434, 434, 434)
                 .addComponent(jLabel5)
-                .addGap(290, 290, 290))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,30 +214,7 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void tb_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_produtosMouseClicked
-        
-        
-        
-        
-        int selecionada = tb_produtos.getSelectedRow();
-        if (selecionada == -1) {
-            System.out.println("nada selecionado"); //Não tem nada selecionado
-        } else {
-            vendaVO.setIdProduto(tb_produtos.getValueAt(selecionada, 0).toString());
-            vendaVO.setNomeProduto(tb_produtos.getValueAt(selecionada, 1).toString());
-            vendaVO.setDescricaoProduto(tb_produtos.getValueAt(selecionada, 2).toString());
-            vendaVO.setLanceInicial(tb_produtos.getValueAt(selecionada, 3).toString());
-            
-            
-            if(tb_produtos.getValueAt(selecionada, 4).toString()== null && tb_produtos.getValueAt(selecionada, 5).toString()==null){
-                vendaVO.setLanceFinal("0");
-                vendaVO.setEmailCliente("N/E");
-                
-            } else {
-                vendaVO.setLanceFinal(tb_produtos.getValueAt(selecionada, 4).toString()); 
-                vendaVO.setEmailCliente(tb_produtos.getValueAt(selecionada, 5).toString());
-            }
-        }
-        
+
     }//GEN-LAST:event_tb_produtosMouseClicked
 
     private void bt_voltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_voltarActionPerformed
@@ -257,35 +223,6 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_bt_voltarActionPerformed
-
-    private void bt_finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_finalizarActionPerformed
-
-        vendaVO.setSenhaLeilao(JOptionPane.showInputDialog("Digite a senha para encerrar o leilão"));
-        boolean valida;
-
-        if (vendaVO != null) {
-            
-            try {
-
-                valida = vendaDAO.validaSenha(vendaVO);
-                if (valida == true) {
-                    vendaVO = vendaDAO.buscaIdCliente(vendaVO);
-                    vendaDAO.cadastrarVenda(vendaVO);
-                    vendaDAO.alterarStatus(vendaVO);
-                    JOptionPane.showMessageDialog(null, "Leilão encerrado", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-                    preencherTable();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Senha incorreta", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "problema de conexão" + ex, "Erro", JOptionPane.WARNING_MESSAGE);
-            }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Digite o codigo para realizar a pesquisa", "Alerta", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-    }//GEN-LAST:event_bt_finalizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,14 +241,22 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosLeiloandoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosVendidosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosLeiloandoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosVendidosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosLeiloandoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosVendidosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaProdutosLeiloandoServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ListaProdutosVendidosServidorGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -324,13 +269,12 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListaProdutosLeiloandoServidorGUI().setVisible(true);
+                new ListaProdutosVendidosServidorGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton bt_finalizar;
     private javax.swing.JButton bt_voltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;

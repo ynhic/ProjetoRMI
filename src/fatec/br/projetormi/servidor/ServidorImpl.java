@@ -55,13 +55,8 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
 
         try {
             autentificacaoVO = autentificacaoDAO.validarSenha(email, senha);
-            System.out.println(autentificacaoVO.getEmail() + autentificacaoVO.getSenha());
 
-            if (autentificacaoVO.getEmail().equals(email) && autentificacaoVO.getSenha().equals(senha)) {
-                valida = true;
-            } else {
-                valida = false;
-            }
+            valida = (autentificacaoVO == null);
 
         } catch (SQLException ex) {
             System.out.println("Erro " + ex);
