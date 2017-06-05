@@ -109,14 +109,14 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="bt_verProdutosAtivo" linkSize="2" alignment="0" min="-2" pref="451" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="bt_sair" linkSize="2" alignment="2" min="-2" pref="451" max="-2" attributes="0"/>
-                          <Component id="bt_verProdutosAtivo" linkSize="2" alignment="0" min="-2" pref="451" max="-2" attributes="0"/>
                           <Component id="bt_cadastrarLeilao" linkSize="2" alignment="0" min="-2" pref="451" max="-2" attributes="0"/>
                       </Group>
                       <Component id="bt_encerado" linkSize="2" alignment="0" min="-2" pref="463" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
