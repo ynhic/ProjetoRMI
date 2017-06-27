@@ -5,7 +5,6 @@
  */
 package fatec.br.projetormi.cliente.GUI;
 
-import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import java.awt.event.ActionEvent;
@@ -19,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import fatec.br.projetormi.servidor.ServidorInter;
 
 /**
  *

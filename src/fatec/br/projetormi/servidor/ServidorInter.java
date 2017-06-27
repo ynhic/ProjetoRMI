@@ -37,6 +37,9 @@ public interface ServidorInter extends Remote {
 
     //busca os dados no BD para preencher a table produtos_cliente
     public List<Cadastro_produtosVO> listar(String status) throws RemoteException;
+    
+    //busca os dados no BD para preencher a table produtos_cliente
+    public List<Cadastro_produtosVO> listar(String status, String email) throws RemoteException;
 
     //computa o lance no BD
     public boolean darLance(Cadastro_produtosVO produtoVO) throws RemoteException;

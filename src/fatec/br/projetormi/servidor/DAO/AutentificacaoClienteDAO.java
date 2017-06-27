@@ -6,7 +6,7 @@
 package fatec.br.projetormi.servidor.DAO;
 
 import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

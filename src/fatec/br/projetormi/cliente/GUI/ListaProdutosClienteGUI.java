@@ -6,10 +6,9 @@
 package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
-import fatec.br.projetormi.servidor.ServidorInter;
 import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -20,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
+import fatec.br.projetormi.servidor.ServidorInter;
 
 /**
  *

@@ -6,7 +6,7 @@
 package fatec.br.projetormi.servidor.DAO;
 
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,10 +75,49 @@ public class Cadastro_produtosDAO {
 
         conexao.abrir();//abre conexao com o banco
         sql = "SELECT * FROM TABPRODUTO WHERE STATUS = ?";//comando sql
+        System.out.println("busca padrao"+sql);
+
+        
+        pst = conexao.con().prepareStatement(sql);
+        //dados do produto      
+        pst.setString(1, status);
+        //pst.setString(2, email);
+
+        rs = pst.executeQuery();//executa comando sql
+
+        while (rs.next()) {//quando encontrado
+            Cadastro_produtosVO produtoVO = new Cadastro_produtosVO();//instancia um novo Cadastro_produto
+            produtoVO.setNome_produto(rs.getString("NOME_PRODUTO"));
+            produtoVO.setDescricao_produto(rs.getString("DESCRICAO_PRODUTO"));
+            produtoVO.setLance_produto(rs.getString("LANCE_PRODUTO"));
+            produtoVO.setCod_produto(rs.getString("IDPRODUTO"));
+            produtoVO.setLance_atual(rs.getString("LANCE_FINAL"));
+            produtoVO.setEmailVencedor(rs.getString("EMAILVENCEDOR"));
+            
+
+            lista_produto.add(produtoVO);
+        }
+        conexao.fechar();
+        return lista_produto;//retorna o List
+    }
+    
+    //metodo para mostrar leiloes que o cliente nao cadastrou
+    public List<Cadastro_produtosVO> listar(String status, String email) throws SQLException {
+        /**
+         * Este metodo busca todos os produtos no banco de dados e os armazena
+         * em um List
+         */
+
+        List<Cadastro_produtosVO> lista_produto = new Vector<>();
+
+        conexao.abrir();//abre conexao com o banco
+        sql = "SELECT * FROM TABPRODUTO WHERE STATUS = ? and emailvencedor NOT LIKE ?";//comando sql
+        System.out.println("busca n padrao"+sql);
 
         pst = conexao.con().prepareStatement(sql);
         //dados do produto      
         pst.setString(1, status);
+        pst.setString(2, email);
 
         rs = pst.executeQuery();//executa comando sql
 

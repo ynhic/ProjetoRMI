@@ -9,11 +9,9 @@ import fatec.br.projetormi.servidor.DAO.CadastroVendaDAO;
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.VO.CadastroVenda;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.SQLException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -99,6 +97,7 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Produtos Leiloando");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -125,7 +124,15 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tb_produtos.setCellSelectionEnabled(true);
         tb_produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tb_produtos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -262,8 +269,9 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
 
         vendaVO.setSenhaLeilao(JOptionPane.showInputDialog("Digite a senha para encerrar o leilão"));
         boolean valida;
+        System.out.println(vendaVO.getSenhaLeilao());
 
-        if (vendaVO != null) {
+        if (!vendaVO.getSenhaLeilao().equals("")) {
             
             try {
 
@@ -282,7 +290,7 @@ public class ListaProdutosLeiloandoServidorGUI extends javax.swing.JFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Digite o codigo para realizar a pesquisa", "Alerta", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Selecione um item para encerrar", "Alerta", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_bt_finalizarActionPerformed

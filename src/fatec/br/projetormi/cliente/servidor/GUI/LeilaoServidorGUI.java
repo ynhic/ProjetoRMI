@@ -8,7 +8,7 @@ package fatec.br.projetormi.cliente.servidor.GUI;
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
 import fatec.br.projetormi.servidor.auxiliar.CodeMaker;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +61,7 @@ public class LeilaoServidorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de Leilão");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);

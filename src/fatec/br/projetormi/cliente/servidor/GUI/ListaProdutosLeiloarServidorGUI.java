@@ -7,7 +7,7 @@ package fatec.br.projetormi.cliente.servidor.GUI;
 
 import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.SQLException;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -87,6 +87,7 @@ public class ListaProdutosLeiloarServidorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lista de Produtos");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -125,7 +126,6 @@ public class ListaProdutosLeiloarServidorGUI extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tb_produtos);
 
         jLabel1.setText("Produtos para leiloar");
-        jLabel1.setBorder(null);
         jLabel1.setName(""); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

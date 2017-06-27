@@ -1,8 +1,7 @@
 package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.Cadastro_clientesDAO;
-import fatec.br.projetormi.servidor.ServidorInter;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -14,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import fatec.br.projetormi.servidor.ServidorInter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

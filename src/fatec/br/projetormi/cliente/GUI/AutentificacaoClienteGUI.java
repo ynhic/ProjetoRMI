@@ -6,14 +6,14 @@
 package fatec.br.projetormi.cliente.GUI;
 
 import fatec.br.projetormi.servidor.DAO.AutentificacaoClienteDAO;
-import fatec.br.projetormi.servidor.ServidorInter;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import javax.swing.JOptionPane;
+import fatec.br.projetormi.servidor.ServidorInter;
 
 /**
  *

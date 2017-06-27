@@ -82,6 +82,7 @@ CREATE TABLE TABVENDA (
 	SENHA_CLIENTE VARCHAR(15) NOT NULL	
 );
 
+create table
 
 STATUS = ATI, NAT, VEND
 ATI = ATIVO
@@ -116,6 +117,7 @@ Vector colunas = new Vector(4);
     private String emailCliente;
     private String senhaLeilao;
 
+	
 	
 	
 ab8 - 9WZ

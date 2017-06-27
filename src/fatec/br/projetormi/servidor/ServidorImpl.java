@@ -11,7 +11,7 @@ import fatec.br.projetormi.servidor.DAO.Cadastro_produtosDAO;
 import fatec.br.projetormi.servidor.VO.AutentificacaoClienteVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_clientesVO;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.SQLException;
@@ -214,6 +214,34 @@ public class ServidorImpl extends UnicastRemoteObject implements ServidorInter {
 
     @Override
     public List<Cadastro_produtosVO> listar(String status) throws RemoteException {
+        Conexao conexao = new Conexao();
+        conexao.setNomeBanco("leilaoapp");
+        conexao.setPorta(3306);
+        conexao.setSenha("");
+        conexao.setServidor("localhost");
+        conexao.setUsuario("root");
+
+        Cadastro_produtosDAO cadastro_produtosDAO = new Cadastro_produtosDAO(conexao);
+
+        List<Cadastro_produtosVO> lista_produto = new Vector<>();
+
+        try {
+            lista_produto = cadastro_produtosDAO.listar(status);
+        } catch (SQLException ex) {
+            Logger.getLogger(ServidorImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista_produto;
+    }
+    
+    /**
+     *
+     * @param status
+     * @param email
+     * @return
+     * @throws RemoteException
+     */
+    @Override
+    public List<Cadastro_produtosVO> listar(String status, String email) throws RemoteException {
         Conexao conexao = new Conexao();
         conexao.setNomeBanco("leilaoapp");
         conexao.setPorta(3306);

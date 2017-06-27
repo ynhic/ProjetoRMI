@@ -10,7 +10,7 @@ import fatec.br.projetormi.servidor.DAO.AutentificacaoClienteDAO;
 import fatec.br.projetormi.servidor.DAO.AutentificacaoFuncionarioDAO;
 import fatec.br.projetormi.servidor.Servidor;
 import fatec.br.projetormi.servidor.VO.AutentificacaoFuncionarioVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +56,7 @@ public class AutentificacaoServidorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(0, 0));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -154,6 +155,7 @@ public class AutentificacaoServidorGUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bt_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_loginActionPerformed

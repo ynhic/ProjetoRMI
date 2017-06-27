@@ -8,7 +8,7 @@ package fatec.br.projetormi.servidor.DAO;
 
 import fatec.br.projetormi.servidor.VO.CadastroVenda;
 import fatec.br.projetormi.servidor.VO.Cadastro_produtosVO;
-import fatec.br.projetormi.servidor.conexao.Conexao;
+import viotti.Banco.Conexao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,7 +88,7 @@ public class CadastroVendaDAO {
             
         }
 
-        System.out.println(obj.getEmailCliente());
+        
         //obj.setIdCliente("N/E");
         return obj;
 
@@ -118,15 +118,14 @@ public class CadastroVendaDAO {
         conexao.abrir(); //Abre a conexao com o banco
         
 
-        sql = "select * from tabproduto where senha_leilao = ?"; //Comando SQL para busca
+        sql = "select * from tabproduto where senha_leilao = ? and emailvencedor = ? " ; //Comando SQL para busca
         
         pst = conexao.con().prepareStatement(sql);
         pst.setString(1, obj.getSenhaLeilao()); //Troca "?" do comando SQL
-        System.out.println(obj.getSenhaLeilao());
+        pst.setString(2, obj.getEmailCliente());
         rs = pst.executeQuery(); //Executa o comando SQL
         return rs.next(); //Quando encontrado...
-        
-        
+  
     }
     
     public List<CadastroVenda> listar(String status) throws SQLException {
